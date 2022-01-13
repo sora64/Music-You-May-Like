@@ -2,7 +2,7 @@ const artistsFormEL = document.querySelector('#artistsFormEl');
 const artistSearchInputEl = document.querySelector('#artistName');
 const artistsSimilarToEl = document.querySelector('#artistsSimilarToEl');
 const mostRecentSearchContainerEL = document.querySelector('#mostRecentSearchContainer');
-const artistsSearchedContainerEl = document.querySelector('artistsSearchedContainer');
+const artistsSearchedContainerEl = document.querySelector('#artistsSearchedContainer');
 
 // accesses localStorage to show searched for artists as buttons on the page
 function searchedArtists() {
@@ -12,7 +12,7 @@ function searchedArtists() {
         console.log(storedArtists);
         artistButtonEl.textContent = storedArtists;
         console.log(artistButtonEl.textContent);
-        artistsSearchedContainerEl.appendChild(artistButtonEl);
+        artistsSearchedContainerEl.append(artistButtonEl);
 
     // together with the event listener below, this function allows the user to see searched-for artist's information again
     // function searchedArtistInformation() {
