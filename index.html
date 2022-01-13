@@ -9,19 +9,42 @@
 </head>
 
 <body>
-    <div class="columns">
-        <div class="column">
-            test 1
+    <nav id ="headerContainer" class="navbar">
+        <header id="header" class="navbar-brand">
+            <h1 id="headerText">Hello World</h1>
+        </header>
+    </nav>
+    <main class="columns">
+        <div id="searchedArtistsEl" class="column">
+            <div id="ArtistsSearchedEl">
+                <form id="artistsForm">
+                    <label>
+                        <h3> Search for an Artist:</h3>
+                    </label>
+                    <input name="artistName" id="artistName" placeholder="Artist Name" />
+                    <button type="submit">Search</button>
+                </form>
+            </div>
         </div>
-        <div class="column">
-            test 2
+        <div id="searchContainer" class="column">
+            <div id="mostRecentSearchContainer">
+                <!-- Container for the artist just searched -->                
+            </div>
+            <div id="artistsSearchedContainer">
+                <!-- Artists already searched for will be displayed here as buttons that, when clicked, will bring up the desired information -->
+            </div>
         </div>
-        <div class="column">
-            test 3
+        <div id="artistInformationContainer">
+            <div id="relatedArtistsEl">
+                
+            </div>
+            <div id="youTubeEl">
+
+            </div>
         </div>
 
-    </div>
-
+    </main>
+    <script src="./assets/jss/script.js"></script>
 </body>
 
 </html>
