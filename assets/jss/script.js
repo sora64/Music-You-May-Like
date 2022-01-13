@@ -2,9 +2,33 @@ const artistsFormEL = document.querySelector('#artistsFormEl');
 const artistSearchInputEl = document.querySelector('#artistName');
 const artistsSimilarToEl = document.querySelector('#artistsSimilarToEl');
 const mostRecentSearchContainerEL = document.querySelector('#mostRecentSearchContainer');
+const artistsSearchedContainerEl = document.querySelector('artistsSearchedContainer');
+
+// accesses localStorage to show searched for artists as buttons on the page
+function searchedArtists() {
+    for (let i = 0; i < localStorage.length; i++) {
+        let artistButtonEl = document.createElement('button');
+        let storedArtists = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        console.log(storedArtists);
+        artistButtonEl.textContent = storedArtists;
+        console.log(artistButtonEl.textContent);
+        artistsSearchedContainerEl.appendChild(artistButtonEl);
+
+    // together with the event listener below, this function allows the user to see searched-for artist's information again
+    // function searchedArtistInformation() {
+    //     let artistName = artistButtonEl.textContent;
+
+    //     getArtistInfo(artistName);
+    // }
+
+    // artistButtonEl.addEventListener('click', searchedArtistInfo);
+    }
+}
+
+// function call for searchedArtists() on load
+searchedArtists();
 
 // adds a new artist button when a new search is performed in the page's artist form
-
 function addArtist() {
     let artistButtonEl = document.createElement ('button');
     artistButtonEl.textContent = artistSearchInputEl.value;
