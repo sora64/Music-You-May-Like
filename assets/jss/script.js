@@ -49,7 +49,7 @@ function addArtist() {
 }
 
 function getArtistInfo(artist) {
-    // the following code comes from https://github.com/fxb/javascript-last.fm-api, which enables calling the last.fm API
+    // the following code comes from https://github.com/fxb/javascript-last.fm-api, which is used to call the last.fm API
     let cache = new LastFMCache();
 
     let lastfm = new LastFM({
