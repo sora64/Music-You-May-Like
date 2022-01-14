@@ -15,7 +15,6 @@ function searchedArtists() {
     for (let i = 0; i < localStorage.length; i++) {
         let artistButtonEl = document.createElement('button');
         let storedArtists = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        console.log(storedArtists);
         artistButtonEl.textContent = storedArtists;
         artistsSearchedContainerEl.append(artistButtonEl);
 
@@ -59,7 +58,9 @@ function getArtistInfo(artist) {
     });
 
     lastfm.artist.getInfo({artist}, {success: function(data){
-        console.log(data);
+        console.log(data.artist);
+        document.querySelector('#relatedToX').textContent = 'Artists Similar to ' + data.artist.name + ':';
+        console.log(data.artist.similar.artist);
     }, error: function(){
         console.log("Please enter a valid artist name!");
     }});
