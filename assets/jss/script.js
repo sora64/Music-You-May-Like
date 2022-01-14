@@ -3,24 +3,62 @@ const TOKEN = "https://accounts.spotify.com/api/token";
 var client_id = '0c243873294b4a90a22830738792f105';
 var client_secret = 'e10f00e4371444eca4ccbc462c5d3a90';
 
-var authOptions = {
-    url: 'https://accounts.spotify.com/api/token',
-    headers: {
-        'Authorization': 'Basic ' + (btoa(client_id + ':' + client_secret)),
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    form: {
-        grant_type: 'client_credentials'
-    },
-    json: true
-};
+
+var authOptions =
+    { grant_type: 'client_credentials' }
 
 function requestAuthorization() {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", TOKEN, true);
-    xhr.send(JSON.stringify(authOptions));
+    fetch(TOKEN, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic ' + (btoa(client_id + ':' + client_secret)) },
+        body: "grant_type=client_credentials"
+    }).then(response => {
+        response.json().then((data) => {
+            console.log(data)
+            var token = data.access_token;
+            console.log(token)
+            callApi(token)
+        })
+    });
 }
 
+// 'https://api.spotify.com/v1/search?artist:Miles%20Davis'
+
+function callApi(token) {
+    fetch('https://api.spotify.com/v1/search?type=album&include_external=audio', {
+        method: "GET",
+        headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" }
+    }).then(response => {
+        response.json().then((data) => {
+            console.log(data)
+        })
+    })
+}
+
+
+
+// function requestAuthorization() {
+//     let xhr = new XMLHttpRequest();
+//     xhr.open("POST", TOKEN, true);
+//     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//     xhr.setRequestHeader('Authorization', 'Basic ' + btoa(client_id + ':' + client_secret))
+//     xhr.body('grant_type', 'client_credentials')
+//     xhr.send();
+// }
+
+
+// var authOptions = {
+//     url: encodeURI(TOKEN),
+//     headers: {
+//         'Authorization': 'Basic ' + (btoa(client_id + ':' + client_secret).toString),
+//         'Accept': 'application/x-www-form-urlencoded',
+//         'Content-Type': 'application/x-www-form-urlencoded'
+//     },
+//     form: {
+//         grant_type: 'client_credentials'
+//     },
+//     json: true
+// };
 
 
 
