@@ -11,6 +11,7 @@ const artistsSearchedContainerEl = document.querySelector('#artistsSearchedConta
 
 // accesses localStorage to show searched for artists as buttons on the page
 function searchedArtists() {
+    localStorage.removeItem('lastfm');
     for (let i = 0; i < localStorage.length; i++) {
         let artistButtonEl = document.createElement('button');
         let storedArtists = JSON.parse(localStorage.getItem(localStorage.key(i)));
