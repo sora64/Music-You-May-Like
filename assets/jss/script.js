@@ -4,6 +4,12 @@ const artistsSimilarToEl = document.querySelector('#artistsSimilarToEl');
 const mostRecentSearchContainerEL = document.querySelector('#mostRecentSearchContainer');
 const artistsSearchedContainerEl = document.querySelector('#artistsSearchedContainer');
 
+const TOKEN = "https://accounts.spotify.com/api/token";
+const client_id = '0c243873294b4a90a22830738792f105';
+const client_secret = 'e10f00e4371444eca4ccbc462c5d3a90';
+const artistInput = document.getElementById("artistName");
+const authOptions = { grant_type: 'client_credentials' };
+
 // accesses localStorage to show searched for artists as buttons on the page
 function searchedArtists() {
     for (let i = 0; i < localStorage.length; i++) {
@@ -60,3 +66,45 @@ function formSubmitHandler(event) {
 }
 
 artistsFormEL.addEventListener('submit', formSubmitHandler);
+
+function requestAuthorization() {
+    fetch(TOKEN, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic ' + (btoa(client_id + ':' + client_secret)) },
+        body: "grant_type=client_credentials"
+    }).then(response => {
+        response.json().then((data) => {
+            console.log(data)
+            const token = data.access_token;
+            console.log(token)
+            const artistText = artistInput.value
+            console.log(artistInput.value)
+            callApi(token, artistText)
+        })
+    });
+}
+
+function callApi(token, artistName) {
+    fetch('https://api.spotify.com/v1/search?q=name:' + artistName + '&type=artist&limit=10', {
+        method: "GET",
+        headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" }
+    }).then(response => {
+        response.json().then((data) => {
+            console.log(data)
+            const artistId = data.artists.items[0].id
+            console.log(artistId)
+            getRelatedArtist(artistId, token)
+        })
+    })
+}
+
+function getRelatedArtist(artistId, token) {
+    fetch('https://api.spotify.com/v1/artists/' + artistId + '/related-artists', {
+        method: "GET",
+        headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" }
+    }).then(response => {
+        response.json().then((data) => {
+            console.log(data)
+        })
+    })
+}
