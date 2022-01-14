@@ -3,6 +3,9 @@ const TOKEN = "https://accounts.spotify.com/api/token";
 var client_id = '0c243873294b4a90a22830738792f105';
 var client_secret = 'e10f00e4371444eca4ccbc462c5d3a90';
 
+var artistInput = document.getElementById("artistName");
+// console.log(artistInput)
+
 
 var authOptions =
     { grant_type: 'client_credentials' }
@@ -17,15 +20,29 @@ function requestAuthorization() {
             console.log(data)
             var token = data.access_token;
             console.log(token)
-            callApi(token)
+            var artistText = artistInput.value
+            console.log(artistInput.value)
+            callApi(token, artistText)
         })
     });
 }
 
-// 'https://api.spotify.com/v1/search?artist:Miles%20Davis'
+function callApi(token, artistName) {
+    fetch('https://api.spotify.com/v1/search?q=name:' + artistName + '&type=artist&limit=10', {
+        method: "GET",
+        headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" }
+    }).then(response => {
+        response.json().then((data) => {
+            console.log(data)
+            var artistId = data.artists.items[0].id
+            console.log(artistId)
+            getRelatedArtist(artistId, token)
+        })
+    })
+}
 
-function callApi(token) {
-    fetch('https://api.spotify.com/v1/search?type=album&include_external=audio', {
+function getRelatedArtist(artistId, token) {
+    fetch('https://api.spotify.com/v1/artists/' + artistId + '/related-artists', {
         method: "GET",
         headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" }
     }).then(response => {
@@ -34,7 +51,6 @@ function callApi(token) {
         })
     })
 }
-
 
 
 // function requestAuthorization() {

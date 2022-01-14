@@ -1,82 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css"
+    />
     <title>Music You May Like</title>
-</head>
+  </head>
 
-<body>
-    <nav id ="headerContainer" class="navbar">
-        <header id="header" class="navbar-brand">
-            <h1 id="headerText">Hello World</h1>
-        </header>
+  <body>
+    <nav id="headerContainer" class="navbar">
+      <header id="header" class="navbar-brand">
+        <h1 id="headerText">Hello World</h1>
+      </header>
     </nav>
     <main class="columns">
-        <div id="searchedArtistsEl" class="column">
-            <div id="ArtistsSearchedEl">
-                <form id="artistsForm">
-                    <label>
-                        <h3> Search for an Artist:</h3>
-                    </label>
-                    <input name="artistName" id="artistName" placeholder="Artist Name" />
-                    <button type="button" onclick="requestAuthorization()">Search</button>
-                </form>
-            </div>
+      <div id="searchedArtistsEl" class="column">
+        <div id="ArtistsSearchedEl">
+          <form id="artistsForm">
+            <label>
+              <h3>Search for an Artist:</h3>
+            </label>
+            <input
+              name="artistName"
+              id="artistName"
+              placeholder="Artist Name"
+            />
+            <button type="submit" onclick="requestAuthorization()">
+              Search
+            </button>
+          </form>
         </div>
-        <div id="searchContainer" class="column">
-            <div id="mostRecentSearchContainer">
-                <!-- Container for the artist just searched -->                
-            </div>
-            <div id="artistsSearchedContainer">
-                <!-- Artists already searched for will be displayed here as buttons that, when clicked, will bring up the desired information -->
-            </div>
+      </div>
+      <div id="searchContainer" class="column">
+        <div id="mostRecentSearchContainer">
+          <!-- Container for the artist just searched -->
         </div>
-        <div id="artistInformationContainer">
-            <div id="relatedArtistsEl">
-                <h4></h4>
-                <div id="relatedArtistsContainerEl">
-                    <div id="relatedArtistOne">
-                        <a href="">
-                            <h5 id="relatedArtistOneName"></h5>
-                            <img />
-                        </a>
-                    </div>
-                    <div id="relatedArtistTwo">
-                        <a href="">
-                            <h5 id="relatedArtistTwoName"></h5>
-                            <img />
-                        </a>
-                    </div>
-                    <div id="relatedArtistThree">
-                        <a href="">
-                            <h5 id="relatedArtistThreeName"></h5>
-                            <img />
-                        </a>
-                    </div>
-                    <div id="relatedArtistFour">
-                        <a href="">
-                            <h5 id="relatedArtistFourName"></h5>
-                            <img />
-                        </a>
-                    </div>
-                    <div id="relatedArtistFive">
-                        <a href="">
-                            <h5 id="relatedArtistFiveName"></h5>
-                            <img />
-                        </a>
-                    </div>
-                </div>   
-            </div>
-            <div id="youTubeEl">
-
-            </div>
+        <div id="artistsSearchedContainer">
+          <!-- Artists already searched for will be displayed here as buttons that, when clicked, will bring up the desired information -->
         </div>
-
+      </div>
+      <div id="artistInformationContainer">
+        <div id="relatedArtistsEl">
+          <h4></h4>
+          <div id="relatedArtistsContainerEl">
+            <div id="relatedArtistOne">
+              <a href="">
+                <h5 id="relatedArtistOneName"></h5>
+                <img />
+              </a>
+            </div>
+            <div id="relatedArtistTwo">
+              <a href="">
+                <h5 id="relatedArtistTwoName"></h5>
+                <img />
+              </a>
+            </div>
+            <div id="relatedArtistThree">
+              <a href="">
+                <h5 id="relatedArtistThreeName"></h5>
+                <img />
+              </a>
+            </div>
+            <div id="relatedArtistFour">
+              <a href="">
+                <h5 id="relatedArtistFourName"></h5>
+                <img />
+              </a>
+            </div>
+            <div id="relatedArtistFive">
+              <a href="">
+                <h5 id="relatedArtistFiveName"></h5>
+                <img />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="youTubeEl"></div>
+      </div>
     </main>
     <script src="./assets/jss/script.js"></script>
-</body>
-
+  </body>
 </html>
