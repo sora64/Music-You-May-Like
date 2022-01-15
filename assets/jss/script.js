@@ -59,7 +59,21 @@ function getArtistInfo(artist) {
 
     lastfm.artist.getInfo({artist}, {success: function(data){
         console.log(data.artist);
+
         document.querySelector('#relatedToX').textContent = 'Artists Similar to ' + data.artist.name + ':';
+        
+        document.querySelector('#relatedArtistOneName').textContent = "1: " + data.artist.similar.artist[0].name;
+        document.querySelector('#relatedArtistTwoName').textContent = "2: " + data.artist.similar.artist[1].name;
+        document.querySelector('#relatedArtistThreeName').textContent = "3: " + data.artist.similar.artist[2].name;
+        document.querySelector('#relatedArtistFourName').textContent = "4: " + data.artist.similar.artist[3].name;
+        document.querySelector('#relatedArtistFiveName').textContent = "5: " + data.artist.similar.artist[4].name;
+
+        document.querySelector('#relatedArtistOneURL').href = data.artist.similar.artist[0].url;
+        document.querySelector('#relatedArtistTwoURL').href = data.artist.similar.artist[1].url;
+        document.querySelector('#relatedArtistThreeURL').href = data.artist.similar.artist[2].url;
+        document.querySelector('#relatedArtistFourURL').href = data.artist.similar.artist[3].url;
+        document.querySelector('#relatedArtistFiveURL').href = data.artist.similar.artist[4].url;
+
         console.log(data.artist.similar.artist);
     }, error: function(){
         console.log("Please enter a valid artist name!");
