@@ -2,18 +2,32 @@ const artistsFormEL = document.querySelector('#artistsFormEl');
 const artistSearchInputEl = document.querySelector('#artistName');
 const artistsSimilarToEl = document.querySelector('#artistsSimilarToEl');
 const mostRecentSearchContainerEL = document.querySelector('#mostRecentSearchContainer');
+
+const relatedToX = document.querySelector('#relatedToX');
 const searchedArtistURL = document.querySelector('#searchedArtistURL');
+const searchedArtistImg = document.querySelector('#searchedArtistImg');
+
 const artistsSearchedContainerEl = document.querySelector('#artistsSearchedContainer');
+
 const relatedArtistOneName = document.querySelector('#relatedArtistOneName');
 const relatedArtistOneURL = document.querySelector('#relatedArtistOneURL')
+const relatedArtistOneImg = document.querySelector('#relatedArtistOneImg');
+
 const relatedArtistTowName = document.querySelector('#relatedArtistTwoName');
 const relatedArtistTwoURL = document.querySelector('#relatedArtistTwoURL')
+const relatedArtistTwoImg = document.querySelector('#relatedArtistTwoImg');
+
 const relatedArtistThreeName = document.querySelector('#relatedArtistThreeName');
 const relatedArtistThreeURL =document.querySelector('#relatedArtistThreeURL')
+const relatedArtistThreeImg = document.querySelector('#relatedArtistThreeImg');
+
 const relatedArtistFourName = document.querySelector('#relatedArtistFourName');
-const relatedArtistFourURL = document.querySelector('#relatedArtistFourURL')
+const relatedArtistFourURL = document.querySelector('#relatedArtistFourURL');
+const relatedArtistFourImg = document.querySelector('#relatedArtistFourImg');
+
 const relatedArtistFiveName = document.querySelector('#relatedArtistFiveName');
 const relatedArtistFiveURL = document.querySelector('#relatedArtistFiveURL');
+const relatedArtistFiveImg = document.querySelector('#relatedArtistFiveImg');
 
 // const TOKEN = "https://accounts.spotify.com/api/token";
 // const client_id = '0c243873294b4a90a22830738792f105';
@@ -71,9 +85,10 @@ function getArtistInfo(artist) {
     lastfm.artist.getInfo({artist}, {success: function(data){
         console.log(data.artist);
 
-        document.querySelector('#relatedToX').textContent = 'Artists Similar to : ';
+        relatedToX.textContent = 'Artists Similar to : ';
         searchedArtistURL.textContent= data.artist.name;
         searchedArtistURL.href = data.artist.url;
+        // searchedArtistImg.src = data.artist.image[0]['#text'];
 
         relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
         relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
