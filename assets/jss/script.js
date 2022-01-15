@@ -2,6 +2,7 @@ const artistsFormEL = document.querySelector('#artistsFormEl');
 const artistSearchInputEl = document.querySelector('#artistName');
 const artistsSimilarToEl = document.querySelector('#artistsSimilarToEl');
 const mostRecentSearchContainerEL = document.querySelector('#mostRecentSearchContainer');
+const searchedArtistURL = document.querySelector('#searchedArtistURL');
 const artistsSearchedContainerEl = document.querySelector('#artistsSearchedContainer');
 const relatedArtistOneName = document.querySelector('#relatedArtistOneName');
 const relatedArtistOneURL = document.querySelector('#relatedArtistOneURL')
@@ -70,7 +71,9 @@ function getArtistInfo(artist) {
     lastfm.artist.getInfo({artist}, {success: function(data){
         console.log(data.artist);
 
-        document.querySelector('#relatedToX').textContent = 'Artists Similar to ' + data.artist.name + ':';
+        document.querySelector('#relatedToX').textContent = 'Artists Similar to : ';
+        searchedArtistURL.textContent= data.artist.name;
+        searchedArtistURL.href = data.artist.url;
 
         relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
         relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
