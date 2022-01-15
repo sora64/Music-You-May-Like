@@ -3,6 +3,16 @@ const artistSearchInputEl = document.querySelector('#artistName');
 const artistsSimilarToEl = document.querySelector('#artistsSimilarToEl');
 const mostRecentSearchContainerEL = document.querySelector('#mostRecentSearchContainer');
 const artistsSearchedContainerEl = document.querySelector('#artistsSearchedContainer');
+const relatedArtistOneName = document.querySelector('#relatedArtistOneName');
+const relatedArtistOneURL = document.querySelector('#relatedArtistOneURL')
+const relatedArtistTowName = document.querySelector('#relatedArtistTwoName');
+const relatedArtistTwoURL = document.querySelector('#relatedArtistTwoURL')
+const relatedArtistThreeName = document.querySelector('#relatedArtistThreeName');
+const relatedArtistThreeURL =document.querySelector('#relatedArtistThreeURL')
+const relatedArtistFourName = document.querySelector('#relatedArtistFourName');
+const relatedArtistFourURL = document.querySelector('#relatedArtistFourURL')
+const relatedArtistFiveName = document.querySelector('#relatedArtistFiveName');
+const relatedArtistFiveURL = document.querySelector('#relatedArtistFiveURL');
 
 // const TOKEN = "https://accounts.spotify.com/api/token";
 // const client_id = '0c243873294b4a90a22830738792f105';
@@ -48,7 +58,7 @@ function addArtist() {
 }
 
 function getArtistInfo(artist) {
-    // the following code comes from https://github.com/fxb/javascript-last.fm-api, which is used to call the last.fm API
+    // some of the the following code comes from https://github.com/fxb/javascript-last.fm-api, which is used to call the last.fm API
     let cache = new LastFMCache();
 
     let lastfm = new LastFM({
@@ -61,20 +71,19 @@ function getArtistInfo(artist) {
         console.log(data.artist);
 
         document.querySelector('#relatedToX').textContent = 'Artists Similar to ' + data.artist.name + ':';
-        
-        document.querySelector('#relatedArtistOneName').textContent = "1: " + data.artist.similar.artist[0].name;
-        document.querySelector('#relatedArtistTwoName').textContent = "2: " + data.artist.similar.artist[1].name;
-        document.querySelector('#relatedArtistThreeName').textContent = "3: " + data.artist.similar.artist[2].name;
-        document.querySelector('#relatedArtistFourName').textContent = "4: " + data.artist.similar.artist[3].name;
-        document.querySelector('#relatedArtistFiveName').textContent = "5: " + data.artist.similar.artist[4].name;
 
-        document.querySelector('#relatedArtistOneURL').href = data.artist.similar.artist[0].url;
-        document.querySelector('#relatedArtistTwoURL').href = data.artist.similar.artist[1].url;
-        document.querySelector('#relatedArtistThreeURL').href = data.artist.similar.artist[2].url;
-        document.querySelector('#relatedArtistFourURL').href = data.artist.similar.artist[3].url;
-        document.querySelector('#relatedArtistFiveURL').href = data.artist.similar.artist[4].url;
+        relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
+        relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
+        relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
+        relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
+        relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
 
-        console.log(data.artist.similar.artist);
+        relatedArtistOneURL.href = data.artist.similar.artist[0].url;
+        relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
+        relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
+        relatedArtistFourURL.href = data.artist.similar.artist[3].url;
+        relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
+
     }, error: function(){
         console.log("Please enter a valid artist name!");
     }});
