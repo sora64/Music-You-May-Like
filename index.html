@@ -11,28 +11,29 @@
 
   <body>
     <nav id="headerContainer" class="navbar has-background-primary">
-      <header id="header" class="navbar-brand">
-        <h1 id="headerText">Hello World</h1>
+      <header id="header" class="hero is-small card-header-title">
+        <h1 id="headerText" class="is-size-3">Music You May Like</h1>
       </header>
     </nav>
-    <main class="columns has-background-grey-light">
-      <div id="searchedArtistsEl" class="column">
-        <div id="ArtistsSearchedEl">
+    <main class="columns">
+      <div id="searchedArtistsEl" class=" hero is-fullwidth is-fullheight column is-one-fifth">
+        <div id="ArtistsSearchedEl" class="hero-body has-background-grey">
           <form id="artistsFormEl">
             <label>
-              <h3>Search for an Artist:</h3>
+              <p class="title card-header-title is-centered is-size-5">Search for an Artist:</p>
             </label>
             <input
               name="artistName"
               id="artistName"
               placeholder="Artist Name"
+              class="input is-info is-rounded is-focused has-text-centered has-text-weight-semibold"
             />
-            <button type="submit">
+            <button type="submit" class="button is-fullwidth is-primary is-centered is-rounded has-text-weight-semibold my-4">
               Search
             </button>
           </form>
         </div>
-        <div id="searchContainer" class="">
+        <div id="searchContainer" class="card-content is-centered has-background-primary">
           <div id="mostRecentSearchContainer" class="">
             <!-- Container for the artist just searched -->
           </div>
@@ -42,47 +43,51 @@
         </div>
       </div>
       
-      <div id="artistInformationContainer" class="column">
-        <div id="relatedArtistsEl">
-          <h4>
+      <div id="artistInformationContainer" class="hero card is-fullheight column">
+        <div id="relatedArtistsEl" class="card-content">
+          <h3 class="title is-size-4 card-header-title is-centered">
             <img id="searchedArtistImg" src="" />
             <p id="relatedToX"></p>
-            <a id="searchedArtistURL" href=""></a>
-          </h4>
-          <div id="relatedArtistsContainerEl">
-            <div id="relatedArtistOne">
+            <!-- <a id="searchedArtistURL" href=""></a> -->
+          </h3>
+          <div id="relatedArtistsContainerEl" class="hero-body m-4 columns">
+            <div id="relatedArtistOne" class="my-1 mx-1 card-content column">
               <a id="relatedArtistOneURL" href="">
-                <h5 id="relatedArtistOneName"></h5>
+                <h4 id="relatedArtistOneName"></h4>
                 <img id="relatedArtistOneImg" src="" />
               </a>
             </div>
-            <div id="relatedArtistTwo">
+            <div id="relatedArtistTwo" class="my-1 mx-1 card-content column">
               <a id="relatedArtistTwoURL" href="">
-                <h5 id="relatedArtistTwoName"></h5>
+                <h4 id="relatedArtistTwoName"></h4>
                 <img id="relatedArtistTwoImg" src="" />
               </a>
             </div>
-            <div id="relatedArtistThree">
+            <div id="relatedArtistThree" class="my-1 mx-1 card-content column">
               <a id="relatedArtistThreeURL" href="">
-                <h5 id="relatedArtistThreeName"></h5>
+                <h4 id="relatedArtistThreeName"></h4>
                 <img id="relatedArtistThreeImg" src="" />
               </a>
             </div>
-            <div id="relatedArtistFour">
+            <div id="relatedArtistFour" class="my-1 mx-1 card-content column">
               <a id="relatedArtistFourURL" href="">
-                <h5 id="relatedArtistFourName"></h5>
+                <h4 id="relatedArtistFourName"></h4>
                 <img id="relatedArtistFourImg" src="" />
               </a>
             </div>
-            <div id="relatedArtistFive">
+            <div id="relatedArtistFive" class="my-1 mx-1 card-content column">
               <a id="relatedArtistFiveURL" href="">
-                <h5 id="relatedArtistFiveName"></h5>
+                <h4 id="relatedArtistFiveName"></h4>
                 <img id="relatedArtistFiveImg" src="" />
               </a>
             </div>
           </div>
         </div>
-        <div id="youTubeEl"></div>
+        <div id="artistBioContainer" class="card-content">
+          <h4 id="searchedArtistBioName" class="is-size-4 card-header-title has-text-weight-semibold is-centered"></h4>
+          <p id="searchedArtistBioEl" class="subtitle card-content"></p>
+        </div>
+        <!-- <div id="youTubeEl"></div> -->
       </div>
     </main>
     

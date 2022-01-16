@@ -3,6 +3,9 @@ const artistSearchInputEl = document.querySelector('#artistName');
 const artistsSimilarToEl = document.querySelector('#artistsSimilarToEl');
 const mostRecentSearchContainerEL = document.querySelector('#mostRecentSearchContainer');
 
+const searchedArtistBioName = document.querySelector('#searchedArtistBioName');
+const searchedArtistBioEl = document.querySelector('#searchedArtistBioEl');
+
 const relatedToX = document.querySelector('#relatedToX');
 const searchedArtistURL = document.querySelector('#searchedArtistURL');
 const searchedArtistImg = document.querySelector('#searchedArtistImg');
@@ -41,6 +44,7 @@ function searchedArtists() {
         let artistButtonEl = document.createElement('button');
         let storedArtists = JSON.parse(localStorage.getItem(localStorage.key(i)));
         artistButtonEl.textContent = storedArtists;
+        artistButtonEl.classList.add('button', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');
         artistsSearchedContainerEl.append(artistButtonEl);
 
         // together with the event listener below, this function allows the user to see searched-for artist's information again
@@ -60,6 +64,7 @@ searchedArtists();
 function addArtist() {
     let artistButtonEl = document.createElement ('button');
     artistButtonEl.textContent = artistSearchInputEl.value;
+    artistButtonEl.classList.add('button', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');    
     mostRecentSearchContainerEL.appendChild(artistButtonEl);
 
     // together with the event listener below, this function allows the user to see a just-searched-for artist's information again if they click back to it after clicking on an older searched-for artist's button
@@ -85,9 +90,13 @@ function getArtistInfo(artist) {
     lastfm.artist.getInfo({artist}, {success: function(data){
         console.log(data.artist);
 
-        relatedToX.textContent = 'Artists Similar to : ';
-        searchedArtistURL.textContent= data.artist.name;
-        searchedArtistURL.href = data.artist.url;
+        searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
+        searchedArtistBioEl.innerHTML = data.artist.bio.summary;
+
+        relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
+        // relatedToX.textContent = 'Artists Similar to : ';
+        // searchedArtistURL.textContent= data.artist.name;
+        // searchedArtistURL.href = data.artist.url;
         // searchedArtistImg.src = data.artist.image[0]['#text'];
 
         relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
