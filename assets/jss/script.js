@@ -93,23 +93,42 @@ function getArtistInfo(artist) {
         searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
         searchedArtistBioEl.innerHTML = data.artist.bio.summary;
 
+
         relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
         // relatedToX.textContent = 'Artists Similar to : ';
         // searchedArtistURL.textContent= data.artist.name;
         // searchedArtistURL.href = data.artist.url;
         // searchedArtistImg.src = data.artist.image[0]['#text'];
 
+        if (data.artist.similar.artist.length !== 0) {
         relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
         relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
         relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
         relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
         relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
 
+
         relatedArtistOneURL.href = data.artist.similar.artist[0].url;
         relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
         relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
         relatedArtistFourURL.href = data.artist.similar.artist[3].url;
         relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
+        } else {
+            relatedToX.textContent = "No related artists found."
+
+            relatedArtistOneName.textContent = '';
+            relatedArtistTowName.textContent = '';
+            relatedArtistThreeName.textContent = '';
+            relatedArtistFourName.textContent = '';
+            relatedArtistFiveName.textContent = '';
+
+
+            relatedArtistOneURL.href = '';
+            relatedArtistTwoURL.href = '';
+            relatedArtistThreeURL.href = '';
+            relatedArtistFourURL.href = '';
+            relatedArtistFiveURL.href = '';
+        }
 
     }, error: function(){
         console.log("Please enter a valid artist name!");
