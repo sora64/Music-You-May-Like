@@ -89,11 +89,14 @@ function getArtistInfo(artist) {
 
     lastfm.artist.getInfo({artist}, {success: function(data){
         console.log(data.artist);
-
-        searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
-        searchedArtistBioEl.innerHTML = data.artist.bio.summary;
-
-
+        if (data.artist.bio.content !== "") {
+            searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
+            searchedArtistBioEl.innerHTML = data.artist.bio.summary;
+        } else {
+            searchedArtistBioName.textContent = "Please Enter a Valid Artist.";
+            searchedArtistBioEl.textContent = "";
+        };
+        
         relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
         // relatedToX.textContent = 'Artists Similar to : ';
         // searchedArtistURL.textContent= data.artist.name;
