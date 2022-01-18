@@ -205,10 +205,19 @@ artistsFormEL.addEventListener('submit', formSubmitHandler);
 
 let youtubeApiKey = 'AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE'
 
+// function getvideoId() {
+//     fetch('https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + artistSearchInputEl + '&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE')
+//         .then(function (response) {
+//             response.json().then(function (data) {
+//                 console.log(data)
+//             })
+//         })
+// }
 
 function callYouTubeApi() {
-    let youtubeApiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&key=' + youtubeApiKey
-
+    console.log(artistSearchInputEl.value)
+    let youtubeApiUrl = ('https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearchInputEl.value + 'part=snippet&regionCode=US&maxResults=1&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE')
+    console.log(youtubeApiUrl)
     fetch(youtubeApiUrl).then(function (response) {
         response.json().then(function (data) {
             console.log(data)
@@ -216,6 +225,7 @@ function callYouTubeApi() {
             let embedUrl = 'https://www.youtube.com/embed/' + videoId
             console.log(embedUrl);
             console.log(embedVideoOne)
+            embedVideoOne.setAttribute('src', '')
             embedVideoOne.setAttribute('src', embedUrl);
 
             // nextYoutubeCall(videoId);
