@@ -32,6 +32,8 @@ const relatedArtistFiveName = document.querySelector('#relatedArtistFiveName');
 const relatedArtistFiveURL = document.querySelector('#relatedArtistFiveURL');
 const relatedArtistFiveImg = document.querySelector('#relatedArtistFiveImg');
 
+const embedVideoOne = document.querySelector("#embedVideoOne");
+
 // const TOKEN = "https://accounts.spotify.com/api/token";
 // const client_id = '0c243873294b4a90a22830738792f105';
 // const client_secret = 'e10f00e4371444eca4ccbc462c5d3a90';
@@ -211,69 +213,13 @@ function callYouTubeApi() {
         response.json().then(function (data) {
             console.log(data)
             let videoId = data.items[0].id.videoId
-            nextYoutubeCall(videoId);
+            let embedUrl = 'https://www.youtube.com/embed/' + videoId
+            console.log(embedUrl);
+            console.log(embedVideoOne)
+            embedVideoOne.setAttribute('src', embedUrl);
+
+            // nextYoutubeCall(videoId);
         })
     })
 }
 
-// function nextYoutubeCall(videoId) {
-//     let youtubeApiUrl = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + videoId + '&key=' + youtubeApiKey;
-
-//     fetch(youtubeApiUrl).then(function (response) {
-//         response.json().then(function (data) {
-//             console.log(data)
-//         })
-//     })
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// callYouTubeApi();
-
-// $(function () {
-//     console.log("TEST")
-//     console.log(gapi)
-//     console.log(gapi.client)
-//     var request = gapi.client.youtube.search.list({
-//         q: encodeURIComponent(artistSearchInputEl).replace(/%20/g, "+"),
-//         part: 'snippet',
-//         type: video,
-//         maxResults: 1
-//     });
-//     request.execute(function (response) {
-
-//         console.log(response)
-//         // var srchItems = response.result.items;                      
-//         //     $.each(srchItems, function (index, item) {
-//         //         vidTitle = item.snippet.title;
-//         //         vidThumburl = item.snippet.thumbnails.default.url;
-//         //         console.log(vidTitle, vidThumburl, index)
-//         //         // vidThumbimg = '<pre><img id="thumb" src="' + vidThumburl + '" alt="No  Image Available." style="width:204px;height:128px"></pre>';
-
-//         //         // $('#results').append('<pre>' + vidTitle + vidThumbimg +  '</pre>');                      
-//         //     })
-//         // })
-//     })
-// }
-// )
-
-// function init() {
-//     console.log("TEST")
-//     gapi.client.setApiKey('AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE');
-//     console.log(gapi.client)
-//     gapi.client.load('youtube', 'v3', function () {
-//     });
-// }
