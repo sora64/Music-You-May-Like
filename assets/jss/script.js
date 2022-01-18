@@ -93,7 +93,7 @@ function getArtistInfo(artist) {
             searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
             searchedArtistBioEl.innerHTML = data.artist.bio.summary;
         } else {
-            searchedArtistBioName.textContent = "Please Enter a Valid Artist.";
+            searchedArtistBioName.textContent = "No bio found for this artist.";
             searchedArtistBioEl.textContent = "";
         };
         
