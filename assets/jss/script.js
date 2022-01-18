@@ -125,7 +125,6 @@ function getArtistInfo(artist) {
             relatedArtistFourName.textContent = '';
             relatedArtistFiveName.textContent = '';
 
-
             relatedArtistOneURL.href = '';
             relatedArtistTwoURL.href = '';
             relatedArtistThreeURL.href = '';
@@ -134,7 +133,21 @@ function getArtistInfo(artist) {
         }
 
     }, error: function(){
-        console.log("Please enter a valid artist name!");
+        relatedToX.textContent = "Please enter a valid artist name.";
+        searchedArtistBioName.textContent = "";
+        searchedArtistBioEl.textContent = "";
+
+        relatedArtistOneName.textContent = '';
+        relatedArtistTowName.textContent = '';
+        relatedArtistThreeName.textContent = '';
+        relatedArtistFourName.textContent = '';
+        relatedArtistFiveName.textContent = '';
+
+        relatedArtistOneURL.href = '';
+        relatedArtistTwoURL.href = '';
+        relatedArtistThreeURL.href = '';
+        relatedArtistFourURL.href = '';
+        relatedArtistFiveURL.href = '';
     }});
 }
 
