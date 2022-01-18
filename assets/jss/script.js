@@ -21,7 +21,7 @@ const relatedArtistTwoURL = document.querySelector('#relatedArtistTwoURL')
 const relatedArtistTwoImg = document.querySelector('#relatedArtistTwoImg');
 
 const relatedArtistThreeName = document.querySelector('#relatedArtistThreeName');
-const relatedArtistThreeURL =document.querySelector('#relatedArtistThreeURL')
+const relatedArtistThreeURL = document.querySelector('#relatedArtistThreeURL')
 const relatedArtistThreeImg = document.querySelector('#relatedArtistThreeImg');
 
 const relatedArtistFourName = document.querySelector('#relatedArtistFourName');
@@ -62,9 +62,9 @@ searchedArtists();
 
 // adds a new artist button when a new search is performed in the page's artist form
 function addArtist() {
-    let artistButtonEl = document.createElement ('button');
+    let artistButtonEl = document.createElement('button');
     artistButtonEl.textContent = artistSearchInputEl.value;
-    artistButtonEl.classList.add('button', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');    
+    artistButtonEl.classList.add('button', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');
     mostRecentSearchContainerEL.appendChild(artistButtonEl);
 
     // together with the event listener below, this function allows the user to see a just-searched-for artist's information again if they click back to it after clicking on an older searched-for artist's button
@@ -73,7 +73,7 @@ function addArtist() {
 
         getArtistInfo(artistName);
     }
-    
+
     artistButtonEl.addEventListener('click', newArtistInfo);
 }
 
@@ -87,52 +87,54 @@ function getArtistInfo(artist) {
         cache: cache
     });
 
-    lastfm.artist.getInfo({artist}, {success: function(data){
-        console.log(data.artist);
+    lastfm.artist.getInfo({ artist }, {
+        success: function (data) {
+            console.log(data.artist);
 
-        searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
-        searchedArtistBioEl.innerHTML = data.artist.bio.summary;
-
-
-        relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
-        // relatedToX.textContent = 'Artists Similar to : ';
-        // searchedArtistURL.textContent= data.artist.name;
-        // searchedArtistURL.href = data.artist.url;
-        // searchedArtistImg.src = data.artist.image[0]['#text'];
-
-        if (data.artist.similar.artist.length !== 0) {
-        relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
-        relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
-        relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
-        relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
-        relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
+            searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
+            searchedArtistBioEl.innerHTML = data.artist.bio.summary;
 
 
-        relatedArtistOneURL.href = data.artist.similar.artist[0].url;
-        relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
-        relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
-        relatedArtistFourURL.href = data.artist.similar.artist[3].url;
-        relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
-        } else {
-            relatedToX.textContent = "No related artists found."
+            relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
+            // relatedToX.textContent = 'Artists Similar to : ';
+            // searchedArtistURL.textContent= data.artist.name;
+            // searchedArtistURL.href = data.artist.url;
+            // searchedArtistImg.src = data.artist.image[0]['#text'];
 
-            relatedArtistOneName.textContent = '';
-            relatedArtistTowName.textContent = '';
-            relatedArtistThreeName.textContent = '';
-            relatedArtistFourName.textContent = '';
-            relatedArtistFiveName.textContent = '';
+            if (data.artist.similar.artist.length !== 0) {
+                relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
+                relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
+                relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
+                relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
+                relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
 
 
-            relatedArtistOneURL.href = '';
-            relatedArtistTwoURL.href = '';
-            relatedArtistThreeURL.href = '';
-            relatedArtistFourURL.href = '';
-            relatedArtistFiveURL.href = '';
+                relatedArtistOneURL.href = data.artist.similar.artist[0].url;
+                relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
+                relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
+                relatedArtistFourURL.href = data.artist.similar.artist[3].url;
+                relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
+            } else {
+                relatedToX.textContent = "No related artists found."
+
+                relatedArtistOneName.textContent = '';
+                relatedArtistTowName.textContent = '';
+                relatedArtistThreeName.textContent = '';
+                relatedArtistFourName.textContent = '';
+                relatedArtistFiveName.textContent = '';
+
+
+                relatedArtistOneURL.href = '';
+                relatedArtistTwoURL.href = '';
+                relatedArtistThreeURL.href = '';
+                relatedArtistFourURL.href = '';
+                relatedArtistFiveURL.href = '';
+            }
+
+        }, error: function () {
+            console.log("Please enter a valid artist name!");
         }
-
-    }, error: function(){
-        console.log("Please enter a valid artist name!");
-    }});
+    });
 }
 
 // function requestAuthorization() {
@@ -187,6 +189,7 @@ function formSubmitHandler(event) {
         localStorage.setItem(JSON.stringify(artistName), JSON.stringify(artistName));
         getArtistInfo(artistName);
         addArtist();
+        callYouTubeApi();
         artistSearchInputEl.value = '';
     } else {
         console.log("Input an artist name");
@@ -194,3 +197,83 @@ function formSubmitHandler(event) {
 }
 
 artistsFormEL.addEventListener('submit', formSubmitHandler);
+
+
+//Youtube API
+
+let youtubeApiKey = 'AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE'
+
+
+function callYouTubeApi() {
+    let youtubeApiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&key=' + youtubeApiKey
+
+    fetch(youtubeApiUrl).then(function (response) {
+        response.json().then(function (data) {
+            console.log(data)
+            let videoId = data.items[0].id.videoId
+            nextYoutubeCall(videoId);
+        })
+    })
+}
+
+// function nextYoutubeCall(videoId) {
+//     let youtubeApiUrl = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + videoId + '&key=' + youtubeApiKey;
+
+//     fetch(youtubeApiUrl).then(function (response) {
+//         response.json().then(function (data) {
+//             console.log(data)
+//         })
+//     })
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// callYouTubeApi();
+
+// $(function () {
+//     console.log("TEST")
+//     console.log(gapi)
+//     console.log(gapi.client)
+//     var request = gapi.client.youtube.search.list({
+//         q: encodeURIComponent(artistSearchInputEl).replace(/%20/g, "+"),
+//         part: 'snippet',
+//         type: video,
+//         maxResults: 1
+//     });
+//     request.execute(function (response) {
+
+//         console.log(response)
+//         // var srchItems = response.result.items;                      
+//         //     $.each(srchItems, function (index, item) {
+//         //         vidTitle = item.snippet.title;
+//         //         vidThumburl = item.snippet.thumbnails.default.url;
+//         //         console.log(vidTitle, vidThumburl, index)
+//         //         // vidThumbimg = '<pre><img id="thumb" src="' + vidThumburl + '" alt="No  Image Available." style="width:204px;height:128px"></pre>';
+
+//         //         // $('#results').append('<pre>' + vidTitle + vidThumbimg +  '</pre>');                      
+//         //     })
+//         // })
+//     })
+// }
+// )
+
+// function init() {
+//     console.log("TEST")
+//     gapi.client.setApiKey('AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE');
+//     console.log(gapi.client)
+//     gapi.client.load('youtube', 'v3', function () {
+//     });
+// }
