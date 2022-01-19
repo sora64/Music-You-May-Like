@@ -13,6 +13,11 @@ const userInstructions = document.querySelector('#userInstructions');
 const artistsSearchedContainerEl = document.querySelector('#artistsSearchedContainer');
 
 const relatedArtistsEl = document.querySelector('#relatedArtistsEl');
+const relatedArtistOne = document.querySelector('#relatedArtistOne');
+const relatedArtistTwo = document.querySelector('#relatedArtistTwo');
+const relatedArtistThree = document.querySelector('#relatedArtistThree');
+const relatedArtistFour = document.querySelector('#relatedArtistFour');
+const relatedArtistFive = document.querySelector('#relatedArtistFive');
 
 const relatedArtistOneName = document.querySelector('#relatedArtistOneName');
 const relatedArtistOneURL = document.querySelector('#relatedArtistOneURL')
@@ -112,12 +117,6 @@ function getArtistInfo(artist) {
         
         if (data.artist.similar.artist.length !== 0) {     
             searchContainerEl.classList.remove('is-invisible');
-            
-            relatedArtistsEl.classList.add('borderClass');
-            relatedArtistsEl.classList.add('box');
-
-            artistVideoAndBio.classList.add('borderClass');
-            artistVideoAndBio.classList.add('box');
 
             relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
             userInstructions.innerHTML = 'Click the names of the artists listed below to check them out on <a id="lastFmHomePage" href="https://www.last.fm/home">last.fm.</a>'
@@ -133,6 +132,9 @@ function getArtistInfo(artist) {
             relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
             relatedArtistFourURL.href = data.artist.similar.artist[3].url;
             relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
+
+            artistVideoAndBio.classList.add('borderClass');
+            artistVideoAndBio.classList.add('box');
 
             embedVideoOne.classList.add('borderClass');
         } else {
