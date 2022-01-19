@@ -1,0 +1,71 @@
+.link:hover {
+    color: hsl(171, 100%, 41%)
+}
+
+#lastFmHomePage {
+    color: hsl(0, 0%, 21%)
+}
+
+#lastFmHomePage:hover {
+    color:hsl(171, 100%, 41%)
+}
+
+.borderClass {
+    border: 5px solid hsl(171, 100%, 41%)
+}
+
+#headerContainer {
+    background-color: rgb(13, 28, 59);
+    border-image: linear-gradient(45deg, rgb(150, 199, 211), rgb(1, 47, 78)) 1;
+    border-style: solid;
+    border-width: 4px;
+}
+
+#searchContainer {
+    background-color: rgb(13, 28, 59);
+    border-image: linear-gradient(135deg, rgb(150, 199, 211), rgb(1, 47, 78)) 1;
+    border-style: solid;
+    border-width: 4px;
+}
+
+#bg {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 15, 15);
+    clip-path: polygon(100% 80%, 0 100%, 0% 100%, 0 0, 100% 100%);
+    position: absolute;
+    z-index: -1;
+    background: linear-gradient(-45deg, #360d01, #e73c7e, #002d3d, #23d5ab);
+    background-size: 100% 400%;
+    animation: gradient 15s ease-in-out infinite;
+  }
+
+  .cardBg {
+      background-color: honeydew;
+  }
+
+  .hidden {
+      display:none
+  }
+
+  #relatedArtistOneName, #relatedArtistTwoName, #relatedArtistThreeName, #relatedArtistFourName, #relatedArtistFiveName {
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px rgba(80, 25, 8, 0.85);
+  }
+
+  #headerText {
+    font-weight: bolder;
+    font-family: 'Exo 2', sans-serif;
+    font-family: 'Lobster', cursive;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-family: 'Prompt', sans-serif;
+    
+  }
+
+  .iconOne {
+      margin-right: 10px;
+  }
+
+  .iconTwo {
+    margin-left: 10px;
+}
