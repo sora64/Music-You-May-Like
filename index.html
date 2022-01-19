@@ -11,27 +11,29 @@
 
   <body>
     <nav id="headerContainer" class="navbar has-background-primary">
-      <header id="header" class="hero is-small card-header-title">
+      <header id="header" class="card-header-title">
         <h1 id="headerText" class="is-size-3 has-text-weight-bold">Music You May Like</h1>
       </header>
     </nav>
     <main class="columns">
-      <div id="searchedArtistsEl" class="container column is-one-fifth">
-        <form id="artistsFormEl" class="has-background-grey p-3">
-          <label>
-            <p class="title has-text-centered is-size-5">Search for an Artist:</p>
-          </label>
-          <input
-            name="artistName"
-            id="artistName"
-            placeholder="Artist Name"
-            class="input is-info is-rounded is-focused has-text-centered has-text-weight-semibold"
-          />
-          <button type="submit" class="button is-fullwidth is-primary is-centered is-rounded has-text-weight-semibold my-2">
-            Search
-          </button>
+      <div id="searchedArtistsEl" class="container column m-4 is-one-fifth">
+        <form id="artistsFormEl" class="box is-rounded has-background-grey p-3">
+          <div class="field">
+            <label>
+              <p class="title has-text-centered is-size-5">Search for an Artist:</p>
+            </label>
+            <input
+              name="artistName"
+              id="artistName"
+              placeholder="Artist Name"
+              class="input is-info is-rounded is-focused has-text-centered has-text-weight-semibold"
+            />
+            <button type="submit" class="button is-fullwidth is-primary is-centered is-rounded has-text-weight-semibold my-2">
+              Search
+            </button>
+          </div>
         </form>
-        <div id="searchContainer" class="container p-4 has-background-primary">
+        <div id="searchContainer" class="box is-rounded p-4 mt-4 has-background-primary">
           <div id="mostRecentSearchContainer" class="is-small">
             <!-- Container for the artist just searched -->
           </div>
@@ -42,7 +44,7 @@
       </div>
       
       <div id="artistInformationContainer" class="hero is-fullheight column">
-        <div id="relatedArtistsEl" class="card-content is-centered mx-4 my-2">
+        <div id="relatedArtistsEl" class="box is-rounded card-content is-centered mx-4 my-2">
           <h3 class="title is-size-4 card-header-title is-centered">
             <p id="relatedToX" class="has-text-centered"></p>
             <!-- <a id="searchedArtistURL" href=""></a> -->
@@ -81,7 +83,7 @@
             </div>
           </div>
         </div>
-        <div id="artistVideoAndBio" class="hero has-text-centered mx-4 my-2">
+        <div id="artistVideoAndBio" class="hero box is-rounded has-text-centered mx-4 my-2">
           <div id="youtubeEl" class="container">
             <h4 id="youtubeContainerTitle" class="is-size-4 card-header-title has-text-weight-semibold is-centered"></h4>
             <h4 id="videoInstructions" class="mb-3 is-size-6 has-text-centered has-text-grey-darker link"></h4>
