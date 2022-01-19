@@ -5,15 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,400;1,600&family=Lobster&family=Mochiy+Pop+P+One&family=Prompt:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Music You May Like</title>
   </head>
 
   <body>
+    <div id="bg"></div>
     <nav id="headerContainer" class="navbar has-background-primary">
       <header id="header" class="card-header-title">
-        <h1 id="headerText" class="is-size-3 has-text-weight-bold">Music You May Like</h1>
+        <i class="fa fa-music iconOne"> </i>
+        <h1 id="headerText" class="is-size-2 has-text-weight-bolder"> Music You May Like </h1>
+        <i class="fa fa-music iconTwo"> </i>
       </header>
+
     </nav>
     <main class="columns">
       <div id="searchedArtistsEl" class="container column m-4 is-one-fifth">
@@ -53,31 +61,31 @@
           <div id="relatedArtistsContainerEl" class="m-4 columns">
             <div id="relatedArtistOne" class="my-1 mx-1 is-one-fifth column">
               <a id="relatedArtistOneURL" class="has-text-grey-darker has-text-centered" href="">
-                <h4 id="relatedArtistOneName" class="link is-size-5"></h4>
+                <button id="relatedArtistOneName" class="link is-size-5 hidden"></button>
               </a>
               <!-- <iframe id="relatedArtistOneVideo" src="" frameborder="0" width="100"></iframe> -->
             </div>
             <div id="relatedArtistTwo" class="my-1 mx-1 is-one-fifth column">
               <a id="relatedArtistTwoURL" class="has-text-grey-darker has-text-centered" href="">
-                <h4 id="relatedArtistTwoName" class="link is-size-5"></h4>
+                <button id="relatedArtistTwoName" class="link is-size-5 hidden"></button>
               </a>
               <!-- <iframe id="relatedArtistTwoVideo" src="" frameborder="0" width="100"></iframe> -->
             </div>
             <div id="relatedArtistThree" class="my-1 mx-1 is-one-fifth column">
               <a id="relatedArtistThreeURL" class="has-text-grey-darker has-text-centered" href="">
-                <h4 id="relatedArtistThreeName" class="link is-size-5"></h4>
+                <button id="relatedArtistThreeName" class="link is-size-5 hidden"></button>
               </a>
               <!-- <iframe id="relatedArtistThreeVideo" src="" frameborder="0"></iframe> -->
             </div>
             <div id="relatedArtistFour" class="my-1 mx-1 is-one-fifth column">
               <a id="relatedArtistFourURL" class="has-text-grey-darker has-text-centered" href="">
-                <h4 id="relatedArtistFourName" class="link is-size-5"></h4>
+                <button id="relatedArtistFourName" class="link is-size-5 hidden"></button>
               </a>
               <!-- <iframe id="relatedArtistFourVideo" src="" frameborder="0"></iframe> -->
             </div>
             <div id="relatedArtistFive" class="my-1 mx-1 is-one-fifth column">
               <a id="relatedArtistFiveURL"class="has-text-grey-darker has-text-centered" href="">
-                <h4 id="relatedArtistFiveName" class="link is-size-5"></h4>
+                <button id="relatedArtistFiveName" class="link is-size-5 hidden"></button>
               </a>
               <!-- <iframe id="relatedArtistFiveVideo" src="" frameborder="0"></iframe> -->
             </div>
@@ -85,7 +93,7 @@
         </div>
         <div id="artistVideoAndBio" class="hero is-rounded has-text-centered mx-4 my-2">
           <div id="youtubeEl" class="container">
-            <h4 id="youtubeContainerTitle" class="is-size-4 card-header-title has-text-weight-semibold is-centered"></h4>
+            <h3 id="youtubeContainerTitle" class="is-size-4 card-header-title has-text-weight-semibold is-centered"></h4>
             <h4 id="videoInstructions" class="mb-3 is-size-6 has-text-centered has-text-grey-darker link"></h4>
             <div id="videoContainer">
               <iframe id="embedVideoOne" src="" frameborder="0" height="300" width="500"></iframe>

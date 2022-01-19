@@ -67,6 +67,13 @@ function searchedArtists() {
 
             getArtistInfo(artistName);
             callYoutubeApi(artistName);
+            relatedArtistsEl.classList.add('cardBg');
+            artistVideoAndBio.classList.add('cardBg');
+            relatedArtistOneName.classList.remove('hidden')
+            relatedArtistTwoName.classList.remove('hidden')
+            relatedArtistThreeName.classList.remove('hidden')
+            relatedArtistFourName.classList.remove('hidden')
+            relatedArtistFiveName.classList.remove('hidden')
         }
 
         artistButtonEl.addEventListener('click', searchedArtistsInfo);
@@ -105,43 +112,62 @@ function getArtistInfo(artist) {
         cache: cache
     });
 
-    lastfm.artist.getInfo({artist}, {success: function(data){
-        console.log(data.artist);
-        if (data.artist.bio.content !== "") {
-            searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
-            searchedArtistBioEl.innerHTML = data.artist.bio.summary;
-        } else {
-            searchedArtistBioName.textContent = "No bio found for this artist.";
+    lastfm.artist.getInfo({ artist }, {
+        success: function (data) {
+            console.log(data.artist);
+            if (data.artist.bio.content !== "") {
+                searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
+                searchedArtistBioEl.innerHTML = data.artist.bio.summary;
+            } else {
+                searchedArtistBioName.textContent = "No bio found for this artist.";
+                searchedArtistBioEl.textContent = "";
+            };
+
+            if (data.artist.similar.artist.length !== 0) {
+                searchContainerEl.classList.remove('is-invisible');
+
+                relatedArtistsEl.classList.add('borderClass');
+                relatedArtistsEl.classList.add('box');
+
+                relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
+                userInstructions.innerHTML = 'Click the names of the artists listed below to check them out on <a id="lastFmHomePage" href="https://www.last.fm/home">last.fm.</a>'
+
+                relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
+                relatedArtistTwoName.textContent = "2: " + data.artist.similar.artist[1].name;
+                relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
+                relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
+                relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
+
+                relatedArtistOneURL.href = data.artist.similar.artist[0].url;
+                relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
+                relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
+                relatedArtistFourURL.href = data.artist.similar.artist[3].url;
+                relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
+
+                artistVideoAndBio.classList.add('borderClass');
+                artistVideoAndBio.classList.add('box');
+
+                embedVideoOne.classList.add('borderClass');
+            } else {
+                relatedToX.textContent = "No related artists found."
+
+                relatedArtistOneName.textContent = '';
+                relatedArtistTwoName.textContent = '';
+                relatedArtistThreeName.textContent = '';
+                relatedArtistFourName.textContent = '';
+                relatedArtistFiveName.textContent = '';
+
+                relatedArtistOneURL.href = '';
+                relatedArtistTwoURL.href = '';
+                relatedArtistThreeURL.href = '';
+                relatedArtistFourURL.href = '';
+                relatedArtistFiveURL.href = '';
+            }
+
+        }, error: function () {
+            relatedToX.textContent = "Please enter a valid artist name.";
+            searchedArtistBioName.textContent = "";
             searchedArtistBioEl.textContent = "";
-        };
-        
-        if (data.artist.similar.artist.length !== 0) {     
-            searchContainerEl.classList.remove('is-invisible');
-
-            relatedArtistsEl.classList.add('borderClass');
-            relatedArtistsEl.classList.add('box');
-
-            relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
-            userInstructions.innerHTML = 'Click the names of the artists listed below to check them out on <a id="lastFmHomePage" href="https://www.last.fm/home">last.fm.</a>'
-
-            relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
-            relatedArtistTwoName.textContent = "2: " + data.artist.similar.artist[1].name;
-            relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
-            relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
-            relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;            
-
-            relatedArtistOneURL.href = data.artist.similar.artist[0].url;
-            relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
-            relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
-            relatedArtistFourURL.href = data.artist.similar.artist[3].url;
-            relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
-
-            artistVideoAndBio.classList.add('borderClass');
-            artistVideoAndBio.classList.add('box');
-
-            embedVideoOne.classList.add('borderClass');
-        } else {
-            relatedToX.textContent = "No related artists found."
 
             relatedArtistOneName.textContent = '';
             relatedArtistTwoName.textContent = '';
@@ -155,24 +181,7 @@ function getArtistInfo(artist) {
             relatedArtistFourURL.href = '';
             relatedArtistFiveURL.href = '';
         }
-
-    }, error: function(){
-        relatedToX.textContent = "Please enter a valid artist name.";
-        searchedArtistBioName.textContent = "";
-        searchedArtistBioEl.textContent = "";
-
-        relatedArtistOneName.textContent = '';
-        relatedArtistTwoName.textContent = '';
-        relatedArtistThreeName.textContent = '';
-        relatedArtistFourName.textContent = '';
-        relatedArtistFiveName.textContent = '';
-
-        relatedArtistOneURL.href = '';
-        relatedArtistTwoURL.href = '';
-        relatedArtistThreeURL.href = '';
-        relatedArtistFourURL.href = '';
-        relatedArtistFiveURL.href = '';
-    }});
+    });
 }
 
 // searches for videos using a given artist's name
@@ -191,16 +200,16 @@ function callYoutubeApi(artistName) {
             embedVideoOne.setAttribute('src', '');
             embedVideoOne.setAttribute('src', embedUrl);
         })
-        .catch((error) => {
-            console.error('Error:', error);
-            videoInstructions.textContent = 'Video Quota reached for the day. Please check back tomorrow!';
-            videoInstructions.classList.add('is-italic');
-            videoInstructions.classList.add('has-text-weight-bold');
-            videoContainer.innerHTML='<img src="https://cdn.shopify.com/s/files/1/1061/1924/products/13_1024x1024.png?v=1571606116" alt="Sorry for the inconvenience!" height="200" width="200" />';
-        });
+            .catch((error) => {
+                console.error('Error:', error);
+                videoInstructions.textContent = 'Video Quota reached for the day. Please check back tomorrow!';
+                videoInstructions.classList.add('is-italic');
+                videoInstructions.classList.add('has-text-weight-bold');
+                videoContainer.innerHTML = '<img src="https://cdn.shopify.com/s/files/1/1061/1924/products/13_1024x1024.png?v=1571606116" alt="Sorry for the inconvenience!" height="200" width="200" />';
+            });
 
         youtubeContainerTitle.textContent = 'Related YouTube Video:';
-        videoInstructions.textContent = 'Check out the video below. If the video is unavailable, click the link saying "Watch on YouTube" to view it there.'    
+        videoInstructions.textContent = 'Check out the video below. If the video is unavailable, click the link saying "Watch on YouTube" to view it there.'
     });
 }
 
@@ -212,10 +221,18 @@ function formSubmitHandler(event) {
 
     if (artistName) {
         localStorage.setItem(JSON.stringify(artistName), JSON.stringify(artistName));
+
         getArtistInfo(artistName);
         addArtist();
         callYoutubeApi(artistName);
         artistSearchInputEl.value = '';
+        relatedArtistsEl.classList.add('cardBg');
+        artistVideoAndBio.classList.add('cardBg');
+        relatedArtistOneName.classList.remove('hidden')
+        relatedArtistTwoName.classList.remove('hidden')
+        relatedArtistThreeName.classList.remove('hidden')
+        relatedArtistFourName.classList.remove('hidden')
+        relatedArtistFiveName.classList.remove('hidden')
     } else {
         console.log("Input an artist name");
     }
