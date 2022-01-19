@@ -96,6 +96,13 @@ function addArtist() {
 
         getArtistInfo(artistName);
         callYoutubeApi(artistName);
+        relatedArtistsEl.classList.add('cardBg');
+        artistVideoAndBio.classList.add('cardBg');
+        relatedArtistOneName.classList.remove('hidden')
+        relatedArtistTwoName.classList.remove('hidden')
+        relatedArtistThreeName.classList.remove('hidden')
+        relatedArtistFourName.classList.remove('hidden')
+        relatedArtistFiveName.classList.remove('hidden')
     }
 
     artistButtonEl.addEventListener('click', newArtistInfo);
