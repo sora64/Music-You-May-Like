@@ -7,16 +7,17 @@ const searchedArtistBioName = document.querySelector('#searchedArtistBioName');
 const searchedArtistBioEl = document.querySelector('#searchedArtistBioEl');
 
 const relatedToX = document.querySelector('#relatedToX');
-const searchedArtistURL = document.querySelector('#searchedArtistURL');
-const searchedArtistImg = document.querySelector('#searchedArtistImg');
+const userInstructions = document.querySelector('#userInstructions');
 
 const artistsSearchedContainerEl = document.querySelector('#artistsSearchedContainer');
+
+const relatedArtistsEl = document.querySelector('#relatedArtistsEl');
 
 const relatedArtistOneName = document.querySelector('#relatedArtistOneName');
 const relatedArtistOneURL = document.querySelector('#relatedArtistOneURL')
 const relatedArtistOneImg = document.querySelector('#relatedArtistOneImg');
 
-const relatedArtistTowName = document.querySelector('#relatedArtistTwoName');
+const relatedArtistTwoName = document.querySelector('#relatedArtistTwoName');
 const relatedArtistTwoURL = document.querySelector('#relatedArtistTwoURL')
 const relatedArtistTwoImg = document.querySelector('#relatedArtistTwoImg');
 
@@ -32,16 +33,11 @@ const relatedArtistFiveName = document.querySelector('#relatedArtistFiveName');
 const relatedArtistFiveURL = document.querySelector('#relatedArtistFiveURL');
 const relatedArtistFiveImg = document.querySelector('#relatedArtistFiveImg');
 
-const relatedArtistsArray = [];
-
-const embedVideoOne = document.querySelector("#embedVideoOne");
 const youtubeApiKey = 'AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE'
-
-
-// const TOKEN = "https://accounts.spotify.com/api/token";
-// const client_id = '0c243873294b4a90a22830738792f105';
-// const client_secret = 'e10f00e4371444eca4ccbc462c5d3a90';
-// const authOptions = { grant_type: 'client_credentials' };
+const embedVideoOne = document.querySelector("#embedVideoOne");
+const videoInstructions = document.querySelector('#videoInstructions');
+const artistVideoAndBio = document.querySelector('#artistVideoAndBio');
+const youtubeContainerTitle = document.querySelector('#youtubeContainerTitle');
 
 // accesses localStorage to show searched for artists as buttons on the page
 function searchedArtists() {
@@ -58,7 +54,26 @@ function searchedArtists() {
             let artistName = artistButtonEl.textContent;
 
             getArtistInfo(artistName);
+
+            let artistSearched = artistName.replaceAll(" ", "+");
+            console.log(artistSearched);
+            let youtubeApiUrl = 'https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&videoEmbeddable=true&type=video&part=snippet&regionCode=US&maxResults=1&key=AIzaSyBm39E3Buzqb2nAMZJVTPHMwDwTxWxZtYw';
+            console.log(youtubeApiUrl);
+            fetch(youtubeApiUrl).then(function (response) {
+                response.json().then(function (data) {
+                    console.log(data);
+                    let videoId = data.items[0].id.videoId;
+                    let embedUrl = 'https://www.youtube.com/embed/' + videoId;
+                    console.log(embedUrl);
+                    embedVideoOne.setAttribute('src', '');
+                    embedVideoOne.setAttribute('src', embedUrl);
+                });
+
+                youtubeContainerTitle.textContent = 'Related YouTube Video:';
+                videoInstructions.textContent = 'Check out the video below. If the video is unavailable, click the link saying "Watch on YouTube" to view it there.'
+            });
         }
+
         artistButtonEl.addEventListener('click', searchedArtistsInfo);
     }
 }
@@ -78,6 +93,23 @@ function addArtist() {
         let artistName = artistButtonEl.textContent;
 
         getArtistInfo(artistName);
+
+        let artistSearched = artistName.replaceAll(" ", "+");
+        console.log(artistSearched);
+        let youtubeApiUrl = 'https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&videoEmbeddable=true&type=video&part=snippet&regionCode=US&maxResults=1&key=AIzaSyBm39E3Buzqb2nAMZJVTPHMwDwTxWxZtYw';
+        console.log(youtubeApiUrl);
+        fetch(youtubeApiUrl).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                let videoId = data.items[0].id.videoId;
+                let embedUrl = 'https://www.youtube.com/embed/' + videoId;
+                console.log(embedUrl);
+                embedVideoOne.setAttribute('src', '');
+                embedVideoOne.setAttribute('src', embedUrl);
+            });
+
+            youtubeContainerTitle.textContent = 'Related YouTube Video:';
+            videoInstructions.textContent = 'Check out the video below. If the video is unavailable, click the link saying "Watch on YouTube" to view it there.'        });
     }
 
     artistButtonEl.addEventListener('click', newArtistInfo);
@@ -103,36 +135,31 @@ function getArtistInfo(artist) {
             searchedArtistBioEl.textContent = "";
         };
         
-        relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
-        // relatedToX.textContent = 'Artists Similar to : ';
-        // searchedArtistURL.textContent= data.artist.name;
-        // searchedArtistURL.href = data.artist.url;
-        // searchedArtistImg.src = data.artist.image[0]['#text'];
-
         if (data.artist.similar.artist.length !== 0) {
+            relatedArtistsEl.classList.add('borderClass');
+            artistVideoAndBio.classList.add('borderClass');
+
+            relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
+            userInstructions.innerHTML = 'Click the names of the artists listed below to check them out on <a id="lastFmHomePage" href="https://www.last.fm/home">last.fm.</a>'
+
             relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
-            relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
+            relatedArtistTwoName.textContent = "2: " + data.artist.similar.artist[1].name;
             relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
             relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
-            relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
-
-            for (let i = 0; i < data.artist.similar.artist.length; i++) {
-                relatedArtistsArray.push(data.artist.similar.artist[i].name);
-            }
-
-            console.log(relatedArtistsArray);
-            
+            relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;            
 
             relatedArtistOneURL.href = data.artist.similar.artist[0].url;
             relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
             relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
             relatedArtistFourURL.href = data.artist.similar.artist[3].url;
             relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
+
+            embedVideoOne.classList.add('borderClass');
         } else {
             relatedToX.textContent = "No related artists found."
 
             relatedArtistOneName.textContent = '';
-            relatedArtistTowName.textContent = '';
+            relatedArtistTwoName.textContent = '';
             relatedArtistThreeName.textContent = '';
             relatedArtistFourName.textContent = '';
             relatedArtistFiveName.textContent = '';
@@ -150,7 +177,7 @@ function getArtistInfo(artist) {
         searchedArtistBioEl.textContent = "";
 
         relatedArtistOneName.textContent = '';
-        relatedArtistTowName.textContent = '';
+        relatedArtistTwoName.textContent = '';
         relatedArtistThreeName.textContent = '';
         relatedArtistFourName.textContent = '';
         relatedArtistFiveName.textContent = '';
@@ -164,70 +191,25 @@ function getArtistInfo(artist) {
 }
 
 function callYoutubeApi() {
-    // console.log(artistSearchInputEl.value);
     //take spaces out and replace with +'s, if the band name has
-    for (let i = 0; i < relatedArtistsArray.length; i++) {
-        // let artistSearched = artistSearchInputEl.value.replaceAll(" ", "+");
-        let artistSearched = relatedArtistsArray[i];
-        console.log(artistSearched);
-        let youtubeApiUrl = ('https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&part=snippet&regionCode=US&maxResults=1&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE');
-        // 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&regionCode=US&videoCategoryId=10&key='
-        console.log(youtubeApiUrl);
-        fetch(youtubeApiUrl).then(function (response) {
+    let artistSearched = artistSearchInputEl.value.replaceAll(" ", "+");
+    console.log(artistSearched);
+    let youtubeApiUrl = 'https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&videoEmbeddable=true&type=video&part=snippet&regionCode=US&maxResults=1&key=AIzaSyBm39E3Buzqb2nAMZJVTPHMwDwTxWxZtYw';
+    console.log(youtubeApiUrl);
+    fetch(youtubeApiUrl).then(function (response) {
         response.json().then(function (data) {
             console.log(data);
             let videoId = data.items[0].id.videoId;
             let embedUrl = 'https://www.youtube.com/embed/' + videoId;
             console.log(embedUrl);
-            console.log(embedVideoOne);
             embedVideoOne.setAttribute('src', '');
             embedVideoOne.setAttribute('src', embedUrl);
         });
+
+        youtubeContainerTitle.textContent = 'Related YouTube Video:';
+        videoInstructions.textContent = 'Check out the video below. If the video is unavailable, click the link saying "Watch on YouTube" to view it there.'    
     });
-    }
 }
-
-// function requestAuthorization() {
-//     fetch(TOKEN, {
-//         method: "POST",
-//         headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': 'Basic ' + (btoa(client_id + ':' + client_secret)) },
-//         body: "grant_type=client_credentials"
-//     }).then(response => {
-//         response.json().then((data) => {
-//             console.log(data)
-//             let token = data.access_token;
-//             console.log(token)
-//             let artistText = artistSearchInputEl.value
-//             console.log(artistSearchInputEl.value)
-//             callSpotifyApi(token, artistText)
-//         })
-//     });
-// }
-
-// function callSpotifyApi(token, artistName) {
-//     fetch('https://api.spotify.com/v1/search?q=name:' + artistName + '&type=artist&limit=10', {
-//         method: "GET",
-//         headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" }
-//     }).then(response => {
-//         response.json().then((data) => {
-//             console.log(data)
-//             let artistId = data.artists.items[0].id
-//             console.log(artistId)
-//             getRelatedArtist(artistId, token)
-//         })
-//     })
-// }
-
-// function getRelatedArtist(artistId, token) {
-//     fetch('https://api.spotify.com/v1/artists/' + artistId + '/related-artists', {
-//         method: "GET",
-//         headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" }
-//     }).then(response => {
-//         response.json().then((data) => {
-//             console.log(data)
-//         })
-//     })
-// }
 
 // tells the page what to do when the user searches for an artist using the page's form
 function formSubmitHandler(event) {
@@ -239,7 +221,7 @@ function formSubmitHandler(event) {
         localStorage.setItem(JSON.stringify(artistName), JSON.stringify(artistName));
         getArtistInfo(artistName);
         addArtist();
-        callYouTubeApi();
+        callYoutubeApi();
         artistSearchInputEl.value = '';
     } else {
         console.log("Input an artist name");
@@ -247,16 +229,3 @@ function formSubmitHandler(event) {
 }
 
 artistsFormEL.addEventListener('submit', formSubmitHandler);
-
-
-//Youtube API
-
-
-// function getvideoId() {
-//     fetch('https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + artistSearchInputEl + '&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE')
-//         .then(function (response) {
-//             response.json().then(function (data) {
-//                 console.log(data)
-//             })
-//         })
-// }

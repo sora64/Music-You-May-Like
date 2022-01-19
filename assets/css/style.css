@@ -1,3 +1,15 @@
 .link:hover {
     color: hsl(171, 100%, 41%)
 }
+
+#lastFmHomePage {
+    color: hsl(0, 0%, 21%)
+}
+
+#lastFmHomePage:hover {
+    color:hsl(171, 100%, 41%)
+}
+
+.borderClass {
+    border: 5px solid hsl(171, 100%, 41%)
+}

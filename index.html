@@ -16,78 +16,82 @@
       </header>
     </nav>
     <main class="columns">
-      <div id="searchedArtistsEl" class=" hero is-fullwidth is-fullheight column is-one-fifth">
-        <div id="ArtistsSearchedEl" class="has-background-grey">
-          <form id="artistsFormEl">
-            <label>
-              <p class="title card-header-title is-centered is-size-4">Search for an Artist:</p>
-            </label>
-            <input
-              name="artistName"
-              id="artistName"
-              placeholder="Artist Name"
-              class="input is-info is-rounded is-focused has-text-centered has-text-weight-semibold"
-            />
-            <button type="submit" class="button is-fullwidth is-primary is-centered is-rounded has-text-weight-semibold my-4">
-              Search
-            </button>
-          </form>
-        </div>
-        <div id="searchContainer" class="card-content is-centered has-background-primary">
+      <div id="searchedArtistsEl" class="container column is-one-fifth">
+        <form id="artistsFormEl" class="has-background-grey p-3">
+          <label>
+            <p class="title has-text-centered is-size-5">Search for an Artist:</p>
+          </label>
+          <input
+            name="artistName"
+            id="artistName"
+            placeholder="Artist Name"
+            class="input is-info is-rounded is-focused has-text-centered has-text-weight-semibold"
+          />
+          <button type="submit" class="button is-fullwidth is-primary is-centered is-rounded has-text-weight-semibold my-2">
+            Search
+          </button>
+        </form>
+        <div id="searchContainer" class="container p-4 has-background-primary">
           <div id="mostRecentSearchContainer" class="is-small">
             <!-- Container for the artist just searched -->
           </div>
-          <div id="artistsSearchedContainer" class="">
+          <div id="artistsSearchedContainer" class="is-medium">
             <!-- Artists already searched for will be displayed here as buttons that, when clicked, will bring up the desired information -->
           </div>
         </div>
       </div>
       
-      <div id="artistInformationContainer" class="hero card is-fullheight column">
-        <div id="relatedArtistsEl" class="card-content">
+      <div id="artistInformationContainer" class="hero is-fullheight column">
+        <div id="relatedArtistsEl" class="card-content is-centered mx-4 my-2">
           <h3 class="title is-size-4 card-header-title is-centered">
-            <img id="searchedArtistImg" src="" />
             <p id="relatedToX"></p>
             <!-- <a id="searchedArtistURL" href=""></a> -->
           </h3>
-          <div id="relatedArtistsContainerEl" class="hero-body m-4 columns">
+          <h4 id="userInstructions" class="is-size-5 has-text-centered has-text-grey-darker link"></h4>
+          <div id="relatedArtistsContainerEl" class="hero-body mx-2 columns">
             <div id="relatedArtistOne" class="my-1 mx-1 card-content column">
-              <a id="relatedArtistOneURL" class="has-text-grey-darker" href="">
-                <h4 id="relatedArtistOneName" class="link"></h4>
-                <iframe id="relatedArtistOneVideo" src="" frameborder="0"></iframe>
+              <a id="relatedArtistOneURL" class="has-text-grey-darker has-text-centered" href="">
+                <h4 id="relatedArtistOneName" class="link is-size-5"></h4>
               </a>
+              <!-- <iframe id="relatedArtistOneVideo" src="" frameborder="0" width="100"></iframe> -->
             </div>
             <div id="relatedArtistTwo" class="my-1 mx-1 card-content column">
-              <a id="relatedArtistTwoURL" class="has-text-grey-darker" href="">
-                <h4 id="relatedArtistTwoName" class="link"></h4>
-                <iframe id="relatedArtistTwoVideo" src="" frameborder="0"></iframe>
+              <a id="relatedArtistTwoURL" class="has-text-grey-darker has-text-centered" href="">
+                <h4 id="relatedArtistTwoName" class="link is-size-5"></h4>
               </a>
+              <!-- <iframe id="relatedArtistTwoVideo" src="" frameborder="0" width="100"></iframe> -->
             </div>
             <div id="relatedArtistThree" class="my-1 mx-1 card-content column">
-              <a id="relatedArtistThreeURL" class="has-text-grey-darker" href="">
-                <h4 id="relatedArtistThreeName" class="link"></h4>
-                <iframe id="relatedArtistThreeVideo" src="" frameborder="0"></iframe>
+              <a id="relatedArtistThreeURL" class="has-text-grey-darker has-text-centered" href="">
+                <h4 id="relatedArtistThreeName" class="link is-size-5"></h4>
               </a>
+              <!-- <iframe id="relatedArtistThreeVideo" src="" frameborder="0"></iframe> -->
             </div>
             <div id="relatedArtistFour" class="my-1 mx-1 card-content column">
-              <a id="relatedArtistFourURL" class="has-text-grey-darker" href="">
-                <h4 id="relatedArtistFourName" class="link"></h4>
-                <iframe id="relatedArtistFourVideo" src="" frameborder="0"></iframe>
+              <a id="relatedArtistFourURL" class="has-text-grey-darker has-text-centered" href="">
+                <h4 id="relatedArtistFourName" class="link is-size-5"></h4>
               </a>
+              <!-- <iframe id="relatedArtistFourVideo" src="" frameborder="0"></iframe> -->
             </div>
             <div id="relatedArtistFive" class="my-1 mx-1 card-content column">
-              <a id="relatedArtistFiveURL"class="has-text-grey-darker" href="">
-                <h4 id="relatedArtistFiveName" class="link"></h4>
-                <iframe id="relatedArtistFiveVideo" src="" frameborder="0"></iframe>
+              <a id="relatedArtistFiveURL"class="has-text-grey-darker has-text-centered" href="">
+                <h4 id="relatedArtistFiveName" class="link is-size-5"></h4>
               </a>
+              <!-- <iframe id="relatedArtistFiveVideo" src="" frameborder="0"></iframe> -->
             </div>
           </div>
         </div>
-        <div id="artistBioContainer" class="card-content">
-          <h4 id="searchedArtistBioName" class="is-size-4 card-header-title has-text-weight-semibold is-centered"></h4>
-          <p id="searchedArtistBioEl" class="subtitle card-content"></p>
+        <div id="artistVideoAndBio" class="hero has-text-centered mx-4 my-2">
+          <div id="youtubeEl" class="container">
+            <h4 id="youtubeContainerTitle" class="is-size-4 card-header-title has-text-weight-semibold is-centered"></h4>
+            <h4 id="videoInstructions" class="mb-3 is-size-6 has-text-centered has-text-grey-darker link"></h4>
+            <iframe id="embedVideoOne" src="" frameborder="0" height="300" width="500"></iframe>
+          </div>
+          <div id="artistBioContainer" class="card-content is-centered">
+            <h4 id="searchedArtistBioName" class="is-size-4 card-header-title has-text-weight-semibold is-centered"></h4>
+            <p id="searchedArtistBioEl" class="subtitle card-content"></p>
+          </div>
         </div>
-        <!-- <div id="youTubeEl"></div> -->
       </div>
     </main>
     
