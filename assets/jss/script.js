@@ -118,6 +118,9 @@ function getArtistInfo(artist) {
         if (data.artist.similar.artist.length !== 0) {     
             searchContainerEl.classList.remove('is-invisible');
 
+            relatedArtistsEl.classList.add('borderClass');
+            relatedArtistsEl.classList.add('box');
+
             relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
             userInstructions.innerHTML = 'Click the names of the artists listed below to check them out on <a id="lastFmHomePage" href="https://www.last.fm/home">last.fm.</a>'
 
