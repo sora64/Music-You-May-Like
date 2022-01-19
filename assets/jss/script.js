@@ -89,11 +89,14 @@ function getArtistInfo(artist) {
 
     lastfm.artist.getInfo({artist}, {success: function(data){
         console.log(data.artist);
-
-        searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
-        searchedArtistBioEl.innerHTML = data.artist.bio.summary;
-
-
+        if (data.artist.bio.content !== "") {
+            searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
+            searchedArtistBioEl.innerHTML = data.artist.bio.summary;
+        } else {
+            searchedArtistBioName.textContent = "No bio found for this artist.";
+            searchedArtistBioEl.textContent = "";
+        };
+        
         relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
         // relatedToX.textContent = 'Artists Similar to : ';
         // searchedArtistURL.textContent= data.artist.name;
@@ -122,7 +125,6 @@ function getArtistInfo(artist) {
             relatedArtistFourName.textContent = '';
             relatedArtistFiveName.textContent = '';
 
-
             relatedArtistOneURL.href = '';
             relatedArtistTwoURL.href = '';
             relatedArtistThreeURL.href = '';
@@ -131,7 +133,21 @@ function getArtistInfo(artist) {
         }
 
     }, error: function(){
-        console.log("Please enter a valid artist name!");
+        relatedToX.textContent = "Please enter a valid artist name.";
+        searchedArtistBioName.textContent = "";
+        searchedArtistBioEl.textContent = "";
+
+        relatedArtistOneName.textContent = '';
+        relatedArtistTowName.textContent = '';
+        relatedArtistThreeName.textContent = '';
+        relatedArtistFourName.textContent = '';
+        relatedArtistFiveName.textContent = '';
+
+        relatedArtistOneURL.href = '';
+        relatedArtistTwoURL.href = '';
+        relatedArtistThreeURL.href = '';
+        relatedArtistFourURL.href = '';
+        relatedArtistFiveURL.href = '';
     }});
 }
 
