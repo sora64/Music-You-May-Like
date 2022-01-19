@@ -32,7 +32,11 @@ const relatedArtistFiveName = document.querySelector('#relatedArtistFiveName');
 const relatedArtistFiveURL = document.querySelector('#relatedArtistFiveURL');
 const relatedArtistFiveImg = document.querySelector('#relatedArtistFiveImg');
 
+const relatedArtistsArray = [];
+
 const embedVideoOne = document.querySelector("#embedVideoOne");
+const youtubeApiKey = 'AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE'
+
 
 // const TOKEN = "https://accounts.spotify.com/api/token";
 // const client_id = '0c243873294b4a90a22830738792f105';
@@ -89,7 +93,6 @@ function getArtistInfo(artist) {
         cache: cache
     });
 
-<<<<<<< HEAD
     lastfm.artist.getInfo({artist}, {success: function(data){
         console.log(data.artist);
         if (data.artist.bio.content !== "") {
@@ -105,21 +108,6 @@ function getArtistInfo(artist) {
         // searchedArtistURL.textContent= data.artist.name;
         // searchedArtistURL.href = data.artist.url;
         // searchedArtistImg.src = data.artist.image[0]['#text'];
-=======
-    lastfm.artist.getInfo({ artist }, {
-        success: function (data) {
-            console.log(data.artist);
-
-            searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
-            searchedArtistBioEl.innerHTML = data.artist.bio.summary;
-
-
-            relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
-            // relatedToX.textContent = 'Artists Similar to : ';
-            // searchedArtistURL.textContent= data.artist.name;
-            // searchedArtistURL.href = data.artist.url;
-            // searchedArtistImg.src = data.artist.image[0]['#text'];
->>>>>>> 066a4ce50ce32cf02a1b704ca693b00eff57ca33
 
             if (data.artist.similar.artist.length !== 0) {
                 relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
@@ -128,6 +116,12 @@ function getArtistInfo(artist) {
                 relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
                 relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
 
+                for (let i = 0; i < data.artist.similar.artist.length; i++) {
+                    relatedArtistsArray.push(data.artist.similar.artist[i].name);
+                }
+
+                console.log(relatedArtistsArray);
+                
 
                 relatedArtistOneURL.href = data.artist.similar.artist[0].url;
                 relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
@@ -143,7 +137,6 @@ function getArtistInfo(artist) {
                 relatedArtistFourName.textContent = '';
                 relatedArtistFiveName.textContent = '';
 
-<<<<<<< HEAD
             relatedArtistOneURL.href = '';
             relatedArtistTwoURL.href = '';
             relatedArtistThreeURL.href = '';
@@ -168,20 +161,27 @@ function getArtistInfo(artist) {
         relatedArtistFourURL.href = '';
         relatedArtistFiveURL.href = '';
     }});
-=======
+}
 
-                relatedArtistOneURL.href = '';
-                relatedArtistTwoURL.href = '';
-                relatedArtistThreeURL.href = '';
-                relatedArtistFourURL.href = '';
-                relatedArtistFiveURL.href = '';
-            }
-
-        }, error: function () {
-            console.log("Please enter a valid artist name!");
-        }
+function callYoutubeApi() {
+    console.log(artistSearchInputEl.value);
+    //take spaces out and replace with +'s, if the band name has
+    let artistSearched = artistSearchInputEl.value.replaceAll(" ", "+");
+    console.log(artistSearched);
+    let youtubeApiUrl = ('https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&part=snippet&regionCode=US&maxResults=1&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE');
+    // 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&regionCode=US&videoCategoryId=10&key='
+    console.log(youtubeApiUrl);
+    fetch(youtubeApiUrl).then(function (response) {
+        response.json().then(function (data) {
+            console.log(data);
+            let videoId = data.items[0].id.videoId;
+            let embedUrl = 'https://www.youtube.com/embed/' + videoId;
+            console.log(embedUrl);
+            console.log(embedVideoOne);
+            embedVideoOne.setAttribute('src', '');
+            embedVideoOne.setAttribute('src', embedUrl);
+        });
     });
->>>>>>> 066a4ce50ce32cf02a1b704ca693b00eff57ca33
 }
 
 // function requestAuthorization() {
@@ -248,7 +248,6 @@ artistsFormEL.addEventListener('submit', formSubmitHandler);
 
 //Youtube API
 
-let youtubeApiKey = 'AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE'
 
 // function getvideoId() {
 //     fetch('https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + artistSearchInputEl + '&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE')
@@ -258,27 +257,3 @@ let youtubeApiKey = 'AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE'
 //             })
 //         })
 // }
-
-function callYouTubeApi() {
-    console.log(artistSearchInputEl.value)
-    //take spaces out and replace with +'s, if the band name has
-    let artistSearched = artistSearchInputEl.value.replaceAll(" ", "+");
-    console.log(artistSearched);
-    let youtubeApiUrl = ('https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&part=snippet&regionCode=US&maxResults=1&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE');
-    // 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&regionCode=US&videoCategoryId=10&key='
-    console.log(youtubeApiUrl)
-    fetch(youtubeApiUrl).then(function (response) {
-        response.json().then(function (data) {
-            console.log(data)
-            let videoId = data.items[0].id.videoId;
-            let embedUrl = 'https://www.youtube.com/embed/' + videoId;
-            console.log(embedUrl);
-            console.log(embedVideoOne);
-            embedVideoOne.setAttribute('src', '');
-            embedVideoOne.setAttribute('src', embedUrl);
-            // nextYoutubeCall(videoId);
-        })
-    })
-}
-
-
