@@ -216,20 +216,24 @@ let youtubeApiKey = 'AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE'
 
 function callYouTubeApi() {
     console.log(artistSearchInputEl.value)
-    let youtubeApiUrl = ('https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearchInputEl.value + 'part=snippet&regionCode=US&maxResults=1&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE')
+    //take spaces out and replace with +'s, if the band name has
+    let artistSearched = artistSearchInputEl.value.replaceAll(" ", "+");
+    console.log(artistSearched);
+    let youtubeApiUrl = ('https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&part=snippet&regionCode=US&maxResults=1&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE');
+    // 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&regionCode=US&videoCategoryId=10&key='
     console.log(youtubeApiUrl)
     fetch(youtubeApiUrl).then(function (response) {
         response.json().then(function (data) {
             console.log(data)
-            let videoId = data.items[0].id.videoId
-            let embedUrl = 'https://www.youtube.com/embed/' + videoId
+            let videoId = data.items[0].id.videoId;
+            let embedUrl = 'https://www.youtube.com/embed/' + videoId;
             console.log(embedUrl);
-            console.log(embedVideoOne)
-            embedVideoOne.setAttribute('src', '')
+            console.log(embedVideoOne);
+            embedVideoOne.setAttribute('src', '');
             embedVideoOne.setAttribute('src', embedUrl);
-
             // nextYoutubeCall(videoId);
         })
     })
 }
+
 
