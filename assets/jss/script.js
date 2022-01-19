@@ -109,33 +109,33 @@ function getArtistInfo(artist) {
         // searchedArtistURL.href = data.artist.url;
         // searchedArtistImg.src = data.artist.image[0]['#text'];
 
-            if (data.artist.similar.artist.length !== 0) {
-                relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
-                relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
-                relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
-                relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
-                relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
+        if (data.artist.similar.artist.length !== 0) {
+            relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
+            relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
+            relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
+            relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
+            relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
 
-                for (let i = 0; i < data.artist.similar.artist.length; i++) {
-                    relatedArtistsArray.push(data.artist.similar.artist[i].name);
-                }
+            for (let i = 0; i < data.artist.similar.artist.length; i++) {
+                relatedArtistsArray.push(data.artist.similar.artist[i].name);
+            }
 
-                console.log(relatedArtistsArray);
-                
+            console.log(relatedArtistsArray);
+            
 
-                relatedArtistOneURL.href = data.artist.similar.artist[0].url;
-                relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
-                relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
-                relatedArtistFourURL.href = data.artist.similar.artist[3].url;
-                relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
-            } else {
-                relatedToX.textContent = "No related artists found."
+            relatedArtistOneURL.href = data.artist.similar.artist[0].url;
+            relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
+            relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
+            relatedArtistFourURL.href = data.artist.similar.artist[3].url;
+            relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
+        } else {
+            relatedToX.textContent = "No related artists found."
 
-                relatedArtistOneName.textContent = '';
-                relatedArtistTowName.textContent = '';
-                relatedArtistThreeName.textContent = '';
-                relatedArtistFourName.textContent = '';
-                relatedArtistFiveName.textContent = '';
+            relatedArtistOneName.textContent = '';
+            relatedArtistTowName.textContent = '';
+            relatedArtistThreeName.textContent = '';
+            relatedArtistFourName.textContent = '';
+            relatedArtistFiveName.textContent = '';
 
             relatedArtistOneURL.href = '';
             relatedArtistTwoURL.href = '';
@@ -164,14 +164,16 @@ function getArtistInfo(artist) {
 }
 
 function callYoutubeApi() {
-    console.log(artistSearchInputEl.value);
+    // console.log(artistSearchInputEl.value);
     //take spaces out and replace with +'s, if the band name has
-    let artistSearched = artistSearchInputEl.value.replaceAll(" ", "+");
-    console.log(artistSearched);
-    let youtubeApiUrl = ('https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&part=snippet&regionCode=US&maxResults=1&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE');
-    // 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&regionCode=US&videoCategoryId=10&key='
-    console.log(youtubeApiUrl);
-    fetch(youtubeApiUrl).then(function (response) {
+    for (let i = 0; i < relatedArtistsArray.length; i++) {
+        // let artistSearched = artistSearchInputEl.value.replaceAll(" ", "+");
+        let artistSearched = relatedArtistsArray[i];
+        console.log(artistSearched);
+        let youtubeApiUrl = ('https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&part=snippet&regionCode=US&maxResults=1&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE');
+        // 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&regionCode=US&videoCategoryId=10&key='
+        console.log(youtubeApiUrl);
+        fetch(youtubeApiUrl).then(function (response) {
         response.json().then(function (data) {
             console.log(data);
             let videoId = data.items[0].id.videoId;
@@ -182,6 +184,7 @@ function callYoutubeApi() {
             embedVideoOne.setAttribute('src', embedUrl);
         });
     });
+    }
 }
 
 // function requestAuthorization() {
