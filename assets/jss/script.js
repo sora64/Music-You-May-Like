@@ -34,6 +34,7 @@ const relatedArtistFiveURL = document.querySelector('#relatedArtistFiveURL');
 const relatedArtistFiveImg = document.querySelector('#relatedArtistFiveImg');
 
 const youtubeApiKey = 'AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE'
+const videoContainer = document.querySelector('#videoContainer');
 const embedVideoOne = document.querySelector("#embedVideoOne");
 const videoInstructions = document.querySelector('#videoInstructions');
 const artistVideoAndBio = document.querySelector('#artistVideoAndBio');
@@ -67,6 +68,13 @@ function searchedArtists() {
                     console.log(embedUrl);
                     embedVideoOne.setAttribute('src', '');
                     embedVideoOne.setAttribute('src', embedUrl);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    videoInstructions.textContent = 'Video Quota reached for the day. Please check back tomorrow!';
+                    videoInstructions.classList.add('is-italic');
+                    videoInstructions.classList.add('has-text-weight-bold');
+                    videoContainer.innerHTML='<img src="https://cdn.shopify.com/s/files/1/1061/1924/products/13_1024x1024.png?v=1571606116" alt="Sorry for the inconvenience!" height="200" width="200" />';
                 });
 
                 youtubeContainerTitle.textContent = 'Related YouTube Video:';
@@ -106,6 +114,13 @@ function addArtist() {
                 console.log(embedUrl);
                 embedVideoOne.setAttribute('src', '');
                 embedVideoOne.setAttribute('src', embedUrl);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                videoInstructions.textContent = 'Video Quota reached for the day. Please check back tomorrow!';
+                videoInstructions.classList.add('is-italic');
+                videoInstructions.classList.add('has-text-weight-bold');   
+                videoContainer.innerHTML='<img src="https://cdn.shopify.com/s/files/1/1061/1924/products/13_1024x1024.png?v=1571606116" alt="Sorry for the inconvenience!" height="200" width="200" />';         
             });
 
             youtubeContainerTitle.textContent = 'Related YouTube Video:';
@@ -204,6 +219,13 @@ function callYoutubeApi() {
             console.log(embedUrl);
             embedVideoOne.setAttribute('src', '');
             embedVideoOne.setAttribute('src', embedUrl);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            videoInstructions.textContent = 'Video Quota reached for the day. Please check back tomorrow!';
+            videoInstructions.classList.add('is-italic');
+            videoInstructions.classList.add('has-text-weight-bold');
+            videoContainer.innerHTML='<img src="https://cdn.shopify.com/s/files/1/1061/1924/products/13_1024x1024.png?v=1571606116" alt="Sorry for the inconvenience!" height="200" width="200" />';
         });
 
         youtubeContainerTitle.textContent = 'Related YouTube Video:';
