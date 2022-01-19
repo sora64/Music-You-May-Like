@@ -21,7 +21,7 @@ const relatedArtistTwoURL = document.querySelector('#relatedArtistTwoURL')
 const relatedArtistTwoImg = document.querySelector('#relatedArtistTwoImg');
 
 const relatedArtistThreeName = document.querySelector('#relatedArtistThreeName');
-const relatedArtistThreeURL =document.querySelector('#relatedArtistThreeURL')
+const relatedArtistThreeURL = document.querySelector('#relatedArtistThreeURL')
 const relatedArtistThreeImg = document.querySelector('#relatedArtistThreeImg');
 
 const relatedArtistFourName = document.querySelector('#relatedArtistFourName');
@@ -31,6 +31,8 @@ const relatedArtistFourImg = document.querySelector('#relatedArtistFourImg');
 const relatedArtistFiveName = document.querySelector('#relatedArtistFiveName');
 const relatedArtistFiveURL = document.querySelector('#relatedArtistFiveURL');
 const relatedArtistFiveImg = document.querySelector('#relatedArtistFiveImg');
+
+const embedVideoOne = document.querySelector("#embedVideoOne");
 
 // const TOKEN = "https://accounts.spotify.com/api/token";
 // const client_id = '0c243873294b4a90a22830738792f105';
@@ -62,9 +64,9 @@ searchedArtists();
 
 // adds a new artist button when a new search is performed in the page's artist form
 function addArtist() {
-    let artistButtonEl = document.createElement ('button');
+    let artistButtonEl = document.createElement('button');
     artistButtonEl.textContent = artistSearchInputEl.value;
-    artistButtonEl.classList.add('button', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');    
+    artistButtonEl.classList.add('button', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');
     mostRecentSearchContainerEL.appendChild(artistButtonEl);
 
     // together with the event listener below, this function allows the user to see a just-searched-for artist's information again if they click back to it after clicking on an older searched-for artist's button
@@ -73,7 +75,7 @@ function addArtist() {
 
         getArtistInfo(artistName);
     }
-    
+
     artistButtonEl.addEventListener('click', newArtistInfo);
 }
 
@@ -87,6 +89,7 @@ function getArtistInfo(artist) {
         cache: cache
     });
 
+<<<<<<< HEAD
     lastfm.artist.getInfo({artist}, {success: function(data){
         console.log(data.artist);
         if (data.artist.bio.content !== "") {
@@ -102,29 +105,45 @@ function getArtistInfo(artist) {
         // searchedArtistURL.textContent= data.artist.name;
         // searchedArtistURL.href = data.artist.url;
         // searchedArtistImg.src = data.artist.image[0]['#text'];
+=======
+    lastfm.artist.getInfo({ artist }, {
+        success: function (data) {
+            console.log(data.artist);
 
-        if (data.artist.similar.artist.length !== 0) {
-        relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
-        relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
-        relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
-        relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
-        relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
+            searchedArtistBioName.textContent = 'Bio for ' + data.artist.name + ':';
+            searchedArtistBioEl.innerHTML = data.artist.bio.summary;
 
 
-        relatedArtistOneURL.href = data.artist.similar.artist[0].url;
-        relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
-        relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
-        relatedArtistFourURL.href = data.artist.similar.artist[3].url;
-        relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
-        } else {
-            relatedToX.textContent = "No related artists found."
+            relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
+            // relatedToX.textContent = 'Artists Similar to : ';
+            // searchedArtistURL.textContent= data.artist.name;
+            // searchedArtistURL.href = data.artist.url;
+            // searchedArtistImg.src = data.artist.image[0]['#text'];
+>>>>>>> 066a4ce50ce32cf02a1b704ca693b00eff57ca33
 
-            relatedArtistOneName.textContent = '';
-            relatedArtistTowName.textContent = '';
-            relatedArtistThreeName.textContent = '';
-            relatedArtistFourName.textContent = '';
-            relatedArtistFiveName.textContent = '';
+            if (data.artist.similar.artist.length !== 0) {
+                relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
+                relatedArtistTowName.textContent = "2: " + data.artist.similar.artist[1].name;
+                relatedArtistThreeName.textContent = "3: " + data.artist.similar.artist[2].name;
+                relatedArtistFourName.textContent = "4: " + data.artist.similar.artist[3].name;
+                relatedArtistFiveName.textContent = "5: " + data.artist.similar.artist[4].name;
 
+
+                relatedArtistOneURL.href = data.artist.similar.artist[0].url;
+                relatedArtistTwoURL.href = data.artist.similar.artist[1].url;
+                relatedArtistThreeURL.href = data.artist.similar.artist[2].url;
+                relatedArtistFourURL.href = data.artist.similar.artist[3].url;
+                relatedArtistFiveURL.href = data.artist.similar.artist[4].url;
+            } else {
+                relatedToX.textContent = "No related artists found."
+
+                relatedArtistOneName.textContent = '';
+                relatedArtistTowName.textContent = '';
+                relatedArtistThreeName.textContent = '';
+                relatedArtistFourName.textContent = '';
+                relatedArtistFiveName.textContent = '';
+
+<<<<<<< HEAD
             relatedArtistOneURL.href = '';
             relatedArtistTwoURL.href = '';
             relatedArtistThreeURL.href = '';
@@ -149,6 +168,20 @@ function getArtistInfo(artist) {
         relatedArtistFourURL.href = '';
         relatedArtistFiveURL.href = '';
     }});
+=======
+
+                relatedArtistOneURL.href = '';
+                relatedArtistTwoURL.href = '';
+                relatedArtistThreeURL.href = '';
+                relatedArtistFourURL.href = '';
+                relatedArtistFiveURL.href = '';
+            }
+
+        }, error: function () {
+            console.log("Please enter a valid artist name!");
+        }
+    });
+>>>>>>> 066a4ce50ce32cf02a1b704ca693b00eff57ca33
 }
 
 // function requestAuthorization() {
@@ -203,6 +236,7 @@ function formSubmitHandler(event) {
         localStorage.setItem(JSON.stringify(artistName), JSON.stringify(artistName));
         getArtistInfo(artistName);
         addArtist();
+        callYouTubeApi();
         artistSearchInputEl.value = '';
     } else {
         console.log("Input an artist name");
@@ -210,3 +244,41 @@ function formSubmitHandler(event) {
 }
 
 artistsFormEL.addEventListener('submit', formSubmitHandler);
+
+
+//Youtube API
+
+let youtubeApiKey = 'AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE'
+
+// function getvideoId() {
+//     fetch('https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + artistSearchInputEl + '&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE')
+//         .then(function (response) {
+//             response.json().then(function (data) {
+//                 console.log(data)
+//             })
+//         })
+// }
+
+function callYouTubeApi() {
+    console.log(artistSearchInputEl.value)
+    //take spaces out and replace with +'s, if the band name has
+    let artistSearched = artistSearchInputEl.value.replaceAll(" ", "+");
+    console.log(artistSearched);
+    let youtubeApiUrl = ('https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&part=snippet&regionCode=US&maxResults=1&key=AIzaSyDbAQ4BIX6BiStDkQ23NernXvNEeAwT7HE');
+    // 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&regionCode=US&videoCategoryId=10&key='
+    console.log(youtubeApiUrl)
+    fetch(youtubeApiUrl).then(function (response) {
+        response.json().then(function (data) {
+            console.log(data)
+            let videoId = data.items[0].id.videoId;
+            let embedUrl = 'https://www.youtube.com/embed/' + videoId;
+            console.log(embedUrl);
+            console.log(embedVideoOne);
+            embedVideoOne.setAttribute('src', '');
+            embedVideoOne.setAttribute('src', embedUrl);
+            // nextYoutubeCall(videoId);
+        })
+    })
+}
+
+
