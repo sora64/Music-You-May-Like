@@ -69,3 +69,16 @@
   .iconTwo {
     margin-left: 10px;
 }
+
+#videoContainer {
+    overflow: hidden;
+
+    position: relative;
+}
+
+#embedVideoOne {
+    border: 0;
+    height: 100%;
+    left: 0;
+    width: 100%;
+}
