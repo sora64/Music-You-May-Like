@@ -69,11 +69,11 @@ function searchedArtists() {
             callYoutubeApi(artistName);
             relatedArtistsEl.classList.add('cardBg');
             artistVideoAndBio.classList.add('cardBg');
-            relatedArtistOneName.classList.remove('hidden')
-            relatedArtistTwoName.classList.remove('hidden')
-            relatedArtistThreeName.classList.remove('hidden')
-            relatedArtistFourName.classList.remove('hidden')
-            relatedArtistFiveName.classList.remove('hidden')
+            relatedArtistOneName.classList.remove('hidden');
+            relatedArtistTwoName.classList.remove('hidden');
+            relatedArtistThreeName.classList.remove('hidden');
+            relatedArtistFourName.classList.remove('hidden');
+            relatedArtistFiveName.classList.remove('hidden');
         }
 
         artistButtonEl.addEventListener('click', searchedArtistsInfo);
@@ -98,11 +98,11 @@ function addArtist() {
         callYoutubeApi(artistName);
         relatedArtistsEl.classList.add('cardBg');
         artistVideoAndBio.classList.add('cardBg');
-        relatedArtistOneName.classList.remove('hidden')
-        relatedArtistTwoName.classList.remove('hidden')
-        relatedArtistThreeName.classList.remove('hidden')
-        relatedArtistFourName.classList.remove('hidden')
-        relatedArtistFiveName.classList.remove('hidden')
+        relatedArtistOneName.classList.remove('hidden');
+        relatedArtistTwoName.classList.remove('hidden');
+        relatedArtistThreeName.classList.remove('hidden');
+        relatedArtistFourName.classList.remove('hidden');
+        relatedArtistFiveName.classList.remove('hidden');
     }
 
     artistButtonEl.addEventListener('click', newArtistInfo);
@@ -137,7 +137,10 @@ function getArtistInfo(artist) {
                 relatedArtistsEl.classList.add('box');
 
                 relatedToX.textContent = 'Artists Similar to ' + data.artist.name + ':';
+                relatedToX.classList.remove('is-size-2');
+                relatedToX.classList.add('is-size-3');
                 userInstructions.innerHTML = 'Click the names of the artists listed below to check them out on <a id="lastFmHomePage" href="https://www.last.fm/home">last.fm.</a>'
+                userInstructions.classList.remove('hidden');
 
                 relatedArtistOneName.textContent = "1: " + data.artist.similar.artist[0].name;
                 relatedArtistTwoName.textContent = "2: " + data.artist.similar.artist[1].name;
@@ -156,7 +159,16 @@ function getArtistInfo(artist) {
 
                 embedVideoOne.classList.add('borderClass');
             } else {
-                relatedToX.textContent = "No related artists found."
+                relatedToX.textContent = "No related artists found.";
+                relatedToX.classList.remove('is-size-3');
+                relatedToX.classList.add('is-size-2');
+                userInstructions.classList.add('hidden');
+
+                relatedArtistOneName.classList.add('hidden');
+                relatedArtistTwoName.classList.add('hidden');
+                relatedArtistThreeName.classList.add('hidden');
+                relatedArtistFourName.classList.add('hidden');
+                relatedArtistFiveName.classList.add('hidden');
 
                 relatedArtistOneName.textContent = '';
                 relatedArtistTwoName.textContent = '';
