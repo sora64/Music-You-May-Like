@@ -72,13 +72,12 @@
 
 #videoContainer {
     overflow: hidden;
-
+    height: 100%;
     position: relative;
 }
 
 #embedVideoOne {
-    border: 0;
     height: 100%;
     left: 0;
-    width: 100%;
+    width: 50%;
 }
