@@ -196,7 +196,7 @@ function callYoutubeApi(artistName) {
     //take spaces out and replace with +'s, if the band name has
     let artistSearched = artistName.replaceAll(" ", "+");
     console.log(artistSearched);
-    let youtubeApiUrl = 'https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&videoEmbeddable=true&type=video&part=snippet&regionCode=US&maxResults=1&key=AIzaSyBm39E3Buzqb2nAMZJVTPHMwDwTxWxZtYw';
+    let youtubeApiUrl = 'https://youtube.googleapis.com/youtube/v3/search?q=' + artistSearched + '&videoEmbeddable=true&type=video&part=snippet&regionCode=US&maxResults=1&key=AIzaSyCf7SbflRoDnYDyVnN6wLLB2UKCP24EIZM';
     console.log(youtubeApiUrl);
     fetch(youtubeApiUrl).then(function (response) {
         response.json().then(function (data) {
