@@ -79,5 +79,23 @@
 #embedVideoOne {
     height: 100%;
     left: 0;
-    width: 50%;
+    width: 75%;
+}
+
+#artistBioContainer {
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+}
+
+@media screen and (max-width: 575) {
+    #artistBioContainer {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    #searchedArtistBioName {
+        margin-top: 0;
+        padding-top: 0;
+    }
 }
