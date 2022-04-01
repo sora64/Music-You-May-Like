@@ -58,7 +58,7 @@ function searchedArtists() {
         let artistButtonEl = document.createElement('button');
         let storedArtists = JSON.parse(localStorage.getItem(localStorage.key(i)));
         artistButtonEl.textContent = storedArtists;
-        artistButtonEl.classList.add('button', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');
+        artistButtonEl.classList.add('button', 'is-size-6', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');
         artistsSearchedContainerEl.append(artistButtonEl);
 
         // together with the event listener below, this function allows the user to see searched-for artist's information again
