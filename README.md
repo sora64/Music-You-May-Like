@@ -1,4 +1,4 @@
-# Project 1: Music-You-May-Like
+# Music-You-May-Like
 
 ## User-Story:
 ### As a music lover...
