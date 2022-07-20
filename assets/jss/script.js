@@ -58,7 +58,7 @@ function searchedArtists() {
         let artistButtonEl = document.createElement('button');
         let storedArtists = JSON.parse(localStorage.getItem(localStorage.key(i)));
         artistButtonEl.textContent = storedArtists;
-        artistButtonEl.classList.add('button', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');
+        artistButtonEl.classList.add('button', 'is-size-7', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');
         artistsSearchedContainerEl.append(artistButtonEl);
 
         // together with the event listener below, this function allows the user to see searched-for artist's information again
@@ -87,7 +87,7 @@ searchedArtists();
 function addArtist() {
     let artistButtonEl = document.createElement('button');
     artistButtonEl.textContent = artistSearchInputEl.value;
-    artistButtonEl.classList.add('button', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');
+    artistButtonEl.classList.add('button', 'is-size-7', 'is-fullwidth', 'is-primary', 'is-outlined', 'has-background-light', 'has-text-weight-semibold', 'is-rounded', 'my-1');
     mostRecentSearchContainerEL.appendChild(artistButtonEl);
 
     // together with the event listener below, this function allows the user to see a just-searched-for artist's information again if they click back to it after clicking on an older searched-for artist's button
